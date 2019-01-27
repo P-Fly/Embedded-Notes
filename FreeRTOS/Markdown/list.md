@@ -11,6 +11,8 @@
 
 ## 总览
 
+![overview][1]
+
 FreeRTOS 中的链表使用了 **List_t** 和 **ListItem_t** 这两组数据结构。其中：
 
  - **List_t** 用于管理该组链表，相当于一个链表头，包含了 **列表项的个数**（uxNumberOfItems），**迭代器**（pxIndex）等相关元素。
@@ -83,7 +85,7 @@ typedef struct xLIST_ITEM ListItem_t;
 
 在当前的迭代器 `pxIndex` 指向的位置前方插入 `ListItem_t`，插入位置如下图蓝色部分：
 
-![vListInsertEnd][1]
+![vListInsertEnd][2]
 
 该接口插入操作的链表一般是不需要排序，而是通过轮询进行访问的链表，其中 `pxIndex` 的作用就是对链表中的链表项进行遍历。例如 `pxReadyTasksLists[0]` 上挂载的是任务优先级相同的任务， `pxIndex` 负责遍历链表，新加入的任务按照 `pxIndex` 的位置挂载即可，而不需要根据新的链表项的值进行排序。
 
@@ -91,7 +93,7 @@ typedef struct xLIST_ITEM ListItem_t;
 
 以**降序**方式插入 `ListItem_t`，比如已有链表项 `xItemValue = 5` 和 `xItemValue = 3` ，新插入链表项 `xItemValue = 4`，此时插入位置如下图蓝色部分：
 
-![vListInsert][2]
+![vListInsert][3]
 
 该接口会按照链表项的值以降序方式将 `ListItem_t` 插入进链表。例如 `pxDelayedTaskList` 上挂载的是需要一定延时的任务，因此新加入此链表的链表项需要按照延迟的时间长短进行排序。
 
@@ -103,5 +105,6 @@ typedef struct xLIST_ITEM ListItem_t;
 
 我们可以使用 `configUSE_LIST_DATA_INTEGRITY_CHECK_BYTES` 宏，在数据结构中放置一些预设的数据，并在需要时通过检测这些数据来确定这部分内存是否被破坏。
 
-  [1]: ./images/vListInsertEnd.jpg
-  [2]: ./images/vListInsert.jpg
+  [1]: ./images/overview.jpg
+  [2]: ./images/vListInsertEnd.jpg
+  [3]: ./images/vListInsert.jpg
