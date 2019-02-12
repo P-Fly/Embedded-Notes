@@ -3,5 +3,10 @@
 - [Introduction](README.md)
 
 ---
+
 - FreeRTOS
-    - [List](FreeRTOS/Markdown/list.md)
+    - List
+        - [List](FreeRTOS/Markdown/list.md)
+    - Task
+        - [Introduction](FreeRTOS/Markdown/task_introduction.md)
+        - [Create and Delete](FreeRTOS/Markdown/task_create_and_delete.md)
