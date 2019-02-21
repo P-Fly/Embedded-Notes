@@ -94,10 +94,12 @@ FreeRTOS 的中断管理如下：
 
  6. prvStartFirstTask
 
->	ldr r0, =0xE000ED08
->	ldr r0, [r0]
->	ldr r0, [r0]
->	msr msp, r0
+```armasm
+	ldr r0, =0xE000ED08
+	ldr r0, [r0]
+	ldr r0, [r0]
+	msr msp, r0
+```
 
 根据 **VTOR** 寄存器获取向量表的地址，并将第一组 32Bit 数据赋予 **msp** 寄存器。
 
@@ -109,37 +111,49 @@ FreeRTOS 的中断管理如下：
  -  这段栈的大小为 Startup.S 文件中定义的 **Stack_Size**。
  - 根据后面任务切换的分析，我们可以发现该系统栈存储 **interrupt handler** 中的栈数据，使用 **msp** 进行访问。任务的堆栈由各个任务的 TCB_t 去追踪，使用 **psp** 进行访问。
 
->	cpsie i
->	cpsie f
->	dsb
->	isb
+```armasm
+	cpsie i
+	cpsie f
+	dsb
+	isb
+```
 
 使能全局中断并清理缓存。
 
->	svc 0
+```armasm
+	svc 0
+```
 
 手动调用 **SVC exception**。
 
  7. vPortSVCHandler
 
->	ldr	r3, =pxCurrentTCB
->	ldr r1, [r3]
->	ldr r0, [r1]
->	ldmia r0!, {r4-r11, r14}
+```armasm
+	ldr	r3, =pxCurrentTCB
+	ldr r1, [r3]
+	ldr r0, [r1]
+	ldmia r0!, {r4-r11, r14}
+```
 
 将 **r4 - r11** 手动出栈，**r14** 寄存器恢复的数据在入栈时被设置为了 0xFFFFFFFD。
 
->	msr psp, r0
->	isb
+```armasm
+	msr psp, r0
+	isb
+```
 
 当前是在 **handler** 模式，使用的是 **msp**，需要在退出 **handler** 模式前手动调整 **psp**。
 
->	mov r0, #0
->	msr	basepri, r0
+```armasm
+	mov r0, #0
+	msr	basepri, r0
+```
 
 关闭优先级屏蔽。
 
->	bx r14
+```armasm
+	bx r14
+```
 
 从 SVC exception 返回，**r14** 的 0xFFFFFFFD 表示返回 **Thread** 模式，并且使用 **PSP**。
 
