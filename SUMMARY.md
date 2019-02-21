@@ -10,6 +10,7 @@
     - Task
         - [任务介绍](FreeRTOS/Markdown/task_introduction.md)
         - [任务的创建与删除](FreeRTOS/Markdown/task_create_and_delete.md)
+        - [调度器的启动](FreeRTOS/Markdown/task_start_scheduler.md)
 
 ---
 
