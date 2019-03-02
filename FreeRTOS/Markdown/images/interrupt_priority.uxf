@@ -4,35 +4,24 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>90</x>
-      <y>330</y>
-      <w>80</w>
-      <h>40</h>
+      <x>50</x>
+      <y>340</y>
+      <w>120</w>
+      <h>20</h>
     </coordinates>
     <panel_attributes>lt=-
+valign=center
 bg=pink
-</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Text</id>
-    <coordinates>
-      <x>120</x>
-      <y>370</y>
-      <w>50</w>
-      <h>30</h>
-    </coordinates>
-    <panel_attributes>style=wordwrap
-0xF</panel_attributes>
+PendSV / SysTick</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>90</x>
-      <y>70</y>
-      <w>80</w>
-      <h>70</h>
+      <x>50</x>
+      <y>90</y>
+      <w>120</w>
+      <h>50</h>
     </coordinates>
     <panel_attributes>lt=-
 bg=BLACK</panel_attributes>
@@ -41,24 +30,24 @@ bg=BLACK</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>90</x>
-      <y>140</y>
-      <w>80</w>
-      <h>40</h>
+      <x>50</x>
+      <y>70</y>
+      <w>120</w>
+      <h>20</h>
     </coordinates>
     <panel_attributes>lt=-
+valign=center
 bg=pink
-
-</panel_attributes>
+SVC</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>90</x>
-      <y>180</y>
-      <w>80</w>
-      <h>150</h>
+      <x>50</x>
+      <y>140</y>
+      <w>120</w>
+      <h>200</h>
     </coordinates>
     <panel_attributes>lt=-
 bg=green
@@ -74,6 +63,8 @@ bg=green
       <h>40</h>
     </coordinates>
     <panel_attributes>style=wordwrap
+valign=center
+halign=left
 由 FreeRTOS 管理
 可以调用中断安全函数(以 FromISR 后缀的系统函数）</panel_attributes>
     <additional_attributes/>
@@ -84,36 +75,26 @@ bg=green
       <x>180</x>
       <y>140</y>
       <w>390</w>
-      <h>40</h>
+      <h>20</h>
     </coordinates>
-    <panel_attributes>configLIBRARY_MAX_SYSCALL_INTERRUPT_PRIORITY
-用于 SVC
-style=wordwrap</panel_attributes>
+    <panel_attributes>style=wordwrap
+valign=center
+halign=left
+configLIBRARY_MAX_SYSCALL_INTERRUPT_PRIORITY</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Text</id>
     <coordinates>
       <x>180</x>
-      <y>330</y>
+      <y>340</y>
       <w>390</w>
-      <h>40</h>
-    </coordinates>
-    <panel_attributes>configLIBRARY_LOWEST_INTERRUPT_PRIORITY
-用于 PendSV 和 SysTick
-style=wordwrap</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Text</id>
-    <coordinates>
-      <x>120</x>
-      <y>40</y>
-      <w>50</w>
-      <h>30</h>
+      <h>20</h>
     </coordinates>
     <panel_attributes>style=wordwrap
-0x0</panel_attributes>
+valign=center
+halign=left
+configLIBRARY_LOWEST_INTERRUPT_PRIORITY</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -122,11 +103,27 @@ style=wordwrap</panel_attributes>
       <x>180</x>
       <y>90</y>
       <w>390</w>
-      <h>40</h>
+      <h>50</h>
     </coordinates>
     <panel_attributes>style=wordwrap
+valign=center
+halign=left
 不由 FreeRTOS 管理，由用户自行管理
-不应该调用 FreeRTOS 的系统函数</panel_attributes>
+不能调用 FreeRTOS 的系统函数</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>180</x>
+      <y>70</y>
+      <w>390</w>
+      <h>20</h>
+    </coordinates>
+    <panel_attributes>style=wordwrap
+valign=center
+halign=left
+0x00</panel_attributes>
     <additional_attributes/>
   </element>
 </diagram>
