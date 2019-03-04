@@ -61,13 +61,11 @@
 
     - 中断优先级值越小，优先级越高。
     - 小于值 **configLIBRARY_MAX_SYSCALL_INTERRUPT_PRIORITY** 的中断由用户自行管理，不应该调用 FreeRTOS 的系统函数。
-    - FreeRTOS 只关心 **configLIBRARY_LOWEST_INTERRUPT_PRIORITY** 和 **configLIBRARY_MAX_SYSCALL_INTERRUPT_PRIORITY** 之间的中断，这部分中断中可以调用中断安全函数(以 FromISR 后缀的系统函数）。
+    - FreeRTOS 只关心 **configLIBRARY_LOWEST_INTERRUPT_PRIORITY** 和 **configLIBRARY_MAX_SYSCALL_INTERRUPT_PRIORITY** 之间的中断，这部分中断可以调用中断安全函数(以 FromISR 后缀的系统函数）。
     - **SVC** 的中断优先级为 **configLIBRARY_MAX_SYSCALL_INTERRUPT_PRIORITY - 1**，它比所有 FreeRTOS 管理的中断的优先级都要高。
     - **PendSV** 和 **SysTick** 的优先级最低。
 
-    对于不带MPU的 **Cortex-M**，**SVC** 的中断优先级为0，可以参看这个帖子描述了原因：
-    [Priority initialization][4]
-    > SVCall is only called to kick the scheduler off, so never called when the scheduler is actually running, so its priority is not set.
+    对于 FreeRTOS 中断的更多详情和一些讨论的链接可以参看文档：[中断优先级][4]。
 
  4. 配置 PendSV 和 SysTick 的中断优先级
 
@@ -165,9 +163,9 @@
 
 从 SVC exception 返回，**r14** 的 0xFFFFFFFD 表示返回 **Thread** 模式，并且使用 **PSP**。
 
-  [1]: ./images/vTaskStartScheduler.jpg
-  [2]: ./images/basepri.jpg
-  [3]: ./images/interrupt_priority.jpg
-  [4]: https://sourceforge.net/p/freertos/discussion/382005/thread/1a42e593/
-  [5]: ./images/pendsv_and_systick_priority_register.jpg
-  [6]: ./images/vtor_register.jpg
+ [1]: ./images/vTaskStartScheduler.jpg
+ [2]: ./images/basepri.jpg
+ [3]: ./images/interrupt_priority.jpg
+ [4]: misc_interrupt_priority.md
+ [5]: ./images/pendsv_and_systick_priority_register.jpg
+ [6]: ./images/vtor_register.jpg
