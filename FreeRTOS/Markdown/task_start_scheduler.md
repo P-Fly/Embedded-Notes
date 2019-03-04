@@ -10,56 +10,64 @@
 
  1. 创建 IDLE 和 Tmr Svc 任务
 
-这两个任务是系统提供的默认服务。
+    这两个任务是系统提供的默认服务。
 
  2. 关闭中断
 
-此处关闭中断是为了在调度器启动的过程中不会被中断打断，在调度器启动成功后 FreeRTOS 会自动打开中断。
+    此处关闭中断是为了在调度器启动的过程中不会被中断打断，在调度器启动成功后 FreeRTOS 会自动打开中断。
 
-对于 **Cortex-M**，开关中断的代码实现如下：
+    对于 **Cortex-M**，开关中断的代码实现如下：
 
-``` C
-static portFORCE_INLINE void vPortRaiseBASEPRI( void )
-{
-uint32_t ulNewBASEPRI = configMAX_SYSCALL_INTERRUPT_PRIORITY;
+    ``` C
+    static portFORCE_INLINE void vPortRaiseBASEPRI( void )
+    {
+    uint32_t ulNewBASEPRI = configMAX_SYSCALL_INTERRUPT_PRIORITY;
 
-	__asm
-	{
-		/* Set BASEPRI to the max syscall priority to effect a critical
-		section. */
-		msr basepri, ulNewBASEPRI
-		dsb
-		isb
-	}
-}
+        __asm
+        {
+            /* Set BASEPRI to the max syscall priority to effect a critical
+            section. */
+            msr basepri, ulNewBASEPRI
+            dsb
+            isb
+        }
+    }
 
-static portFORCE_INLINE void vPortSetBASEPRI( uint32_t ulBASEPRI )
-{
-	__asm
-	{
-		/* Barrier instructions are not used as this function is only used to
-		lower the BASEPRI value. */
-		msr basepri, ulBASEPRI
-	}
-}
-```
+    static portFORCE_INLINE void vPortSetBASEPRI( uint32_t ulBASEPRI )
+    {
+        __asm
+        {
+            /* Barrier instructions are not used as this function is only used to
+            lower the BASEPRI value. */
+            msr basepri, ulBASEPRI
+        }
+    }
+    ```
 
-通过使用设置 **BASEPRI** 寄存器的方式来开关中断，该寄存器属于特殊寄存器，使用 **msr / mrs** 指令进行操作。该寄存器的用途如下：
+    通过设置 **BASEPRI** 寄存器的方式来开关中断，该寄存器属于特殊寄存器，使用 **msr / mrs** 指令进行操作。该寄存器的用途如下：
 
- - 当优先级值大于或等于 **BASEPRI** 的异常会被屏蔽。
- - 当 **BASEPRI = 0** 时，不屏蔽任何异常。
+    - 当 **exception** 的优先级大于或等于 **BASEPRI** 时，该 **exception** 会被屏蔽。
+    - 当 **BASEPRI = 0** 时，不屏蔽任何 **exception**。
 
-详情可以参考 *ARM®v7-M ArchitectureReference Manual*：
+    详情可以参考 *ARM®v7-M ArchitectureReference Manual*：
 
-![basepri][2]
+    ![basepri][2]
 
  3. 校验中断优先级
 
-FreeRTOS 的中断管理如下：
+    FreeRTOS 的中断管理如下：
 
-![interrupt priority][3]
+    ![interrupt priority][3]
 
-系统只关心 **configLIBRARY_LOWEST_INTERRUPT_PRIORITY** ~ **configLIBRARY_MAX_SYSCALL_INTERRUPT_PRIORITY** 之间的中断。高于的部分由用户自己去管理，在这部分中断中，用户不应该调用 FreeRTOS 的系统调用。
+    - 中断优先级值越小，优先级越高。
+    - 小于值 **configLIBRARY_MAX_SYSCALL_INTERRUPT_PRIORITY** 的中断由用户自行管理，不应该调用 FreeRTOS 的系统函数。
+    - FreeRTOS 只关心 **configLIBRARY_LOWEST_INTERRUPT_PRIORITY** 和 **configLIBRARY_MAX_SYSCALL_INTERRUPT_PRIORITY** 之间的中断，这部分中断中可以调用中断安全函数(以 FromISR 后缀的系统函数）。
+    - **SVC** 的中断优先级为 **configLIBRARY_MAX_SYSCALL_INTERRUPT_PRIORITY - 1**，它比所有 FreeRTOS 管理的中断的优先级都要高。
+    - **PendSV** 和 **SysTick** 的优先级最低。
+
+    对于不带MPU的 **Cortex-M**，**SVC** 的中断优先级为0，可以参看这个帖子描述了原因：
+    [Priority initialization][4]
+    > SVCall is only called to kick the scheduler off, so never called when the scheduler is actually running, so its priority is not set.
 
  4. 配置 PendSV 和 SysTick 的中断优先级
 
@@ -70,7 +78,7 @@ FreeRTOS 的中断管理如下：
 
  详情可以参考 *ARM®v7-M ArchitectureReference Manual*：
 
-![interrupt priority][4]
+![interrupt priority][5]
 
  5. 配置 Systick
 
@@ -105,7 +113,7 @@ FreeRTOS 的中断管理如下：
 
 详情可以参考 *ARM®v7-M ArchitectureReference Manual*：
 
-![interrupt priority][5]
+![interrupt priority][6]
 
  - 根据 **Cortex-M** 的定义，向量表的第一个 32Bit 数据为系统栈上电时的默认地址。（相当于我们从代码启动到运行到当前位置时所产生的栈都不需要了）
  -  这段栈的大小为 Startup.S 文件中定义的 **Stack_Size**。
@@ -160,5 +168,6 @@ FreeRTOS 的中断管理如下：
   [1]: ./images/vTaskStartScheduler.jpg
   [2]: ./images/basepri.jpg
   [3]: ./images/interrupt_priority.jpg
-  [4]: ./images/pendsv_and_systick_priority_register.jpg
-  [5]: ./images/vtor_register.jpg
+  [4]: https://sourceforge.net/p/freertos/discussion/382005/thread/1a42e593/
+  [5]: ./images/pendsv_and_systick_priority_register.jpg
+  [6]: ./images/vtor_register.jpg

@@ -4,66 +4,83 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>50</x>
+      <x>140</x>
       <y>340</y>
       <w>120</w>
       <h>20</h>
     </coordinates>
     <panel_attributes>lt=-
-valign=center
 bg=pink
+valign=center
+halign=center
 PendSV / SysTick</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
-    <id>UMLClass</id>
+    <id>Text</id>
     <coordinates>
-      <x>50</x>
-      <y>90</y>
-      <w>120</w>
-      <h>50</h>
+      <x>110</x>
+      <y>340</y>
+      <w>30</w>
+      <h>20</h>
     </coordinates>
-    <panel_attributes>lt=-
-bg=BLACK</panel_attributes>
+    <panel_attributes>valign=center
+halign=right
+0xF</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>50</x>
-      <y>70</y>
+      <x>140</x>
+      <y>80</y>
+      <w>120</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=-
+bg=black
+valign=center
+halign=center</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>140</x>
+      <y>140</y>
       <w>120</w>
       <h>20</h>
     </coordinates>
     <panel_attributes>lt=-
-valign=center
 bg=pink
+valign=center
+halign=center
 SVC</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>50</x>
-      <y>140</y>
+      <x>140</x>
+      <y>160</y>
       <w>120</w>
-      <h>200</h>
+      <h>180</h>
     </coordinates>
     <panel_attributes>lt=-
 bg=green
-</panel_attributes>
+valign=center
+halign=center</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Text</id>
     <coordinates>
-      <x>180</x>
+      <x>260</x>
       <y>230</y>
-      <w>390</w>
+      <w>400</w>
       <h>40</h>
     </coordinates>
-    <panel_attributes>style=wordwrap
-valign=center
+    <panel_attributes>valign=center
 halign=left
 由 FreeRTOS 管理
 可以调用中断安全函数(以 FromISR 后缀的系统函数）</panel_attributes>
@@ -72,13 +89,12 @@ halign=left
   <element>
     <id>Text</id>
     <coordinates>
-      <x>180</x>
-      <y>140</y>
-      <w>390</w>
+      <x>260</x>
+      <y>160</y>
+      <w>400</w>
       <h>20</h>
     </coordinates>
-    <panel_attributes>style=wordwrap
-valign=center
+    <panel_attributes>valign=center
 halign=left
 configLIBRARY_MAX_SYSCALL_INTERRUPT_PRIORITY</panel_attributes>
     <additional_attributes/>
@@ -86,13 +102,12 @@ configLIBRARY_MAX_SYSCALL_INTERRUPT_PRIORITY</panel_attributes>
   <element>
     <id>Text</id>
     <coordinates>
-      <x>180</x>
+      <x>260</x>
       <y>340</y>
-      <w>390</w>
+      <w>400</w>
       <h>20</h>
     </coordinates>
-    <panel_attributes>style=wordwrap
-valign=center
+    <panel_attributes>valign=center
 halign=left
 configLIBRARY_LOWEST_INTERRUPT_PRIORITY</panel_attributes>
     <additional_attributes/>
@@ -100,30 +115,41 @@ configLIBRARY_LOWEST_INTERRUPT_PRIORITY</panel_attributes>
   <element>
     <id>Text</id>
     <coordinates>
-      <x>180</x>
-      <y>90</y>
-      <w>390</w>
-      <h>50</h>
+      <x>110</x>
+      <y>80</y>
+      <w>30</w>
+      <h>20</h>
     </coordinates>
-    <panel_attributes>style=wordwrap
-valign=center
-halign=left
-不由 FreeRTOS 管理，由用户自行管理
-不能调用 FreeRTOS 的系统函数</panel_attributes>
+    <panel_attributes>valign=center
+halign=right
+0x0</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Text</id>
     <coordinates>
-      <x>180</x>
-      <y>70</y>
-      <w>390</w>
+      <x>260</x>
+      <y>90</y>
+      <w>400</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>valign=center
+halign=left
+不由 FreeRTOS 管理，由用户自行管理
+不应该调用 FreeRTOS 的系统函数</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>260</x>
+      <y>140</y>
+      <w>400</w>
       <h>20</h>
     </coordinates>
-    <panel_attributes>style=wordwrap
-valign=center
+    <panel_attributes>valign=center
 halign=left
-0x00</panel_attributes>
+configLIBRARY_MAX_SYSCALL_INTERRUPT_PRIORITY - 1</panel_attributes>
     <additional_attributes/>
   </element>
 </diagram>
