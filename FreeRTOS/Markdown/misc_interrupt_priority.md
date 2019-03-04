@@ -4,11 +4,13 @@
 
 中断优先级是 FreeRTOS 中的一个重点内容，本章重点描述该部分内容。
 
-## 用户中断优先级
+## 总览
 
 FreeRTOS 的中断管理如下：
 
 ![interrupt priority][1]
+
+## 用户中断优先级
 
  - 中断优先级值越小，优先级越高。
  - 小于值 **configLIBRARY_MAX_SYSCALL_INTERRUPT_PRIORITY** 的中断由用户自行管理，不应该调用 FreeRTOS 的系统函数。
