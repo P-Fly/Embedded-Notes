@@ -67,101 +67,100 @@
 
     对于 FreeRTOS 中断的更多详情和一些讨论的链接可以参看文档：[中断优先级][4]。
 
- 4. 配置 PendSV 和 SysTick 的中断优先级
+ 4. 配置 **PendSV** 和 **SysTick** 的中断优先级
 
-``` C
-	portNVIC_SYSPRI2_REG |= portNVIC_PENDSV_PRI;
-	portNVIC_SYSPRI2_REG |= portNVIC_SYSTICK_PRI;
-```
+    ``` C
+    portNVIC_SYSPRI2_REG |= portNVIC_PENDSV_PRI;
+    portNVIC_SYSPRI2_REG |= portNVIC_SYSTICK_PRI;
+    ```
 
- 详情可以参考 *ARM®v7-M ArchitectureReference Manual*：
+    详情可以参考 *ARM®v7-M ArchitectureReference Manual*：
 
-![interrupt priority][5]
+    ![interrupt priority][5]
 
- 5. 配置 Systick
+ 5. 配置 **Systick**
 
-```C
-	void vPortSetupTimerInterrupt( void )
-	{
-		/* Calculate the constants required to configure the tick interrupt. */
-		#if configUSE_TICKLESS_IDLE == 1
-		{
-			ulTimerCountsForOneTick = ( configSYSTICK_CLOCK_HZ / configTICK_RATE_HZ );
-			xMaximumPossibleSuppressedTicks = portMAX_24_BIT_NUMBER / ulTimerCountsForOneTick;
-			ulStoppedTimerCompensation = portMISSED_COUNTS_FACTOR / ( configCPU_CLOCK_HZ / configSYSTICK_CLOCK_HZ );
-		}
-		#endif /* configUSE_TICKLESS_IDLE */
+    初始化 **SysTick**，包括配置基本时钟值，使能 **SysTick exception**。
 
-		/* Configure SysTick to interrupt at the requested rate. */
-		portNVIC_SYSTICK_LOAD_REG = ( configSYSTICK_CLOCK_HZ / configTICK_RATE_HZ ) - 1UL;
-		portNVIC_SYSTICK_CTRL_REG = ( portNVIC_SYSTICK_CLK_BIT | portNVIC_SYSTICK_INT_BIT | portNVIC_SYSTICK_ENABLE_BIT );
-	}
-```
+ 6. 执行 **prvStartFirstTask**
 
- 6. prvStartFirstTask
+    ```armasm
+    PRESERVE8
+    ````
 
-```armasm
-	ldr r0, =0xE000ED08
-	ldr r0, [r0]
-	ldr r0, [r0]
-	msr msp, r0
-```
+    声明当前函数的栈需要 8Byte 对齐。
+    > The PRESERVE8 directive specifies that the current file preserves eight-byte alignment of the stack.
 
-根据 **VTOR** 寄存器获取向量表的地址，并将第一组 32Bit 数据赋予 **msp** 寄存器。
+    ```armasm
+    ldr r0, =0xE000ED08
+    ldr r0, [r0]
+    ldr r0, [r0]
+    msr msp, r0
+    ```
 
-详情可以参考 *ARM®v7-M ArchitectureReference Manual*：
+    根据 **VTOR** 寄存器获取向量表的地址，并将第一组 32Bit 数据赋予 **msp** 寄存器。
 
-![interrupt priority][6]
+    详情可以参考 *ARM®v7-M ArchitectureReference Manual*：
 
- - 根据 **Cortex-M** 的定义，向量表的第一个 32Bit 数据为系统栈上电时的默认地址。（相当于我们从代码启动到运行到当前位置时所产生的栈都不需要了）
- -  这段栈的大小为 Startup.S 文件中定义的 **Stack_Size**。
- - 根据后面任务切换的分析，我们可以发现该系统栈存储 **interrupt handler** 中的栈数据，使用 **msp** 进行访问。任务的堆栈由各个任务的 TCB_t 去追踪，使用 **psp** 进行访问。
+    ![vtor register][6]
 
-```armasm
-	cpsie i
-	cpsie f
-	dsb
-	isb
-```
+    - 根据 **Cortex-M** 的定义，向量表的第一个 32Bit 数据为系统上电时的默认栈地址。这组操作相当于我们从代码启动到当前位置时，所产生的栈都不需要了。
+    - 这段栈的大小为 Startup.S 文件中定义的 **Stack_Size**。
+    - 根据后面任务切换的分析，我们可以发现：系统栈存储 **interrupt handler** 中的数据，使用 **msp** 进行访问；任务栈由各个任务的 TCB_t 去追踪，使用 **psp** 进行访问。
 
-使能全局中断并清理缓存。
+    ```armasm
+    cpsie i
+    cpsie f
+    dsb
+    isb
+    ```
 
-```armasm
-	svc 0
-```
+    - 使能全局中断，并清理缓存。
+    - 虽然全局中断已经打开，但 **basepri** 寄存器依然被设为 **configLIBRARY_MAX_SYSCALL_INTERRUPT_PRIORITY**，此时只有 **用户自管理的中断** 和 **SVC中断** 可以被执行。（SVC中断优先级为 **configLIBRARY_MAX_SYSCALL_INTERRUPT_PRIORITY - 1**）
 
-手动调用 **SVC exception**。
+    ```armasm
+    svc 0
+    ```
 
- 7. vPortSVCHandler
+    手动产生 **SVC exception**。
 
-```armasm
-	ldr	r3, =pxCurrentTCB
-	ldr r1, [r3]
-	ldr r0, [r1]
-	ldmia r0!, {r4-r11, r14}
-```
+ 7. 执行 **vPortSVCHandler**
 
-将 **r4 - r11** 手动出栈，**r14** 寄存器恢复的数据在入栈时被设置为了 0xFFFFFFFD。
+    ```armasm
+    ldr r3, =pxCurrentTCB
+    ldr r1, [r3]
+    ldr r0, [r1]
+    ldmia r0!, {r4-r11, r14}
+    ```
 
-```armasm
-	msr psp, r0
-	isb
-```
+    - 进入 **SVC exception**，此时栈自动切换为 **msp**。
+    - 通过 **pxCurrentTCB** 找到下一个需要执行的任务的栈。
+    - 将 **r4 - r11** 手动出栈 （其它寄存器由硬件自动退栈）。
+    - **r14** 寄存器恢复的数据在入栈时被设置为了 0xFFFFFFFD：表示退出 **SVC exception** 时自动切换为 **Thread mode**，并使用 **psp**。
 
-当前是在 **handler** 模式，使用的是 **msp**，需要在退出 **handler** 模式前手动调整 **psp**。
+    详情可以参考 *ARM®v7-M ArchitectureReference Manual*：
 
-```armasm
-	mov r0, #0
-	msr	basepri, r0
-```
+    ![exception return behavior][7]
 
-关闭优先级屏蔽。
+    ```armasm
+    msr psp, r0
+    isb
+    ```
 
-```armasm
-	bx r14
-```
+    当前是 **handler mode** ，需要在退出前手动调整 **Thread mode** 下的 **psp**，设为 **pxCurrentTCB->pxTopOfStack**。
 
-从 SVC exception 返回，**r14** 的 0xFFFFFFFD 表示返回 **Thread** 模式，并且使用 **PSP**。
+    ```armasm
+    mov r0, #0
+    msr basepri, r0
+    ```
+
+    取消优先级屏蔽，此时所有中断均可以被响应。
+
+    ```armasm
+    bx r14
+    ```
+
+    从 **SVC exception** 返回。
 
  [1]: ./images/vTaskStartScheduler.jpg
  [2]: ./images/basepri.jpg
@@ -169,3 +168,4 @@
  [4]: misc_interrupt_priority.md
  [5]: ./images/pendsv_and_systick_priority_register.jpg
  [6]: ./images/vtor_register.jpg
+ [7]: ./images/exception_return_behavior.jpg
