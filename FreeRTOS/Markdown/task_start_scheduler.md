@@ -46,12 +46,18 @@
 
     通过设置 **BASEPRI** 寄存器的方式来开关中断，该寄存器属于特殊寄存器，使用 **msr / mrs** 指令进行操作。该寄存器的用途如下：
 
-    - 当 **exception** 的优先级大于或等于 **BASEPRI** 时，该 **exception** 会被屏蔽。
+    - 当它被设成某个值后，所有优先级号大于等于此值的中断都被关（优先级号越大，优先级越低）。
     - 当 **BASEPRI = 0** 时，不屏蔽任何 **exception**。
 
     详情可以参考 *ARM®v7-M ArchitectureReference Manual*：
 
     ![basepri][2]
+
+    关于硬件优先级和优先级号的关系可以参看下图：
+
+    ![priority value][8]
+
+    后文中所有的优先级都是指硬件优先级。
 
  3. 校验中断优先级
 
@@ -169,3 +175,4 @@
  [5]: ./images/pendsv_and_systick_priority_register.jpg
  [6]: ./images/vtor_register.jpg
  [7]: ./images/exception_return_behavior.jpg
+ [8]: ./images/priority_value.jpg
