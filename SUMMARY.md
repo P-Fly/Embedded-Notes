@@ -4,6 +4,11 @@
 
 ---
 
+- Common
+    - [堆栈类型](Common/Markdown/stack_type.md)
+
+---
+
 - FreeRTOS
     - List
         - [链表](FreeRTOS/Markdown/list.md)
