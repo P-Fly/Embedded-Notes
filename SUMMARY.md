@@ -5,7 +5,7 @@
 ---
 
 - Common
-    - [堆栈类型](Common/Markdown/stack_type.md)
+    - [栈类型](Common/Markdown/stack_type.md)
 
 ---
 
