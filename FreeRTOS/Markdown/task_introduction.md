@@ -15,7 +15,7 @@ FreeRTOS 的核心是任务管理，那么什么是任务？
 > In the sense of "unit of execution", in some operating systems, a task is synonymous with a process, and in others with a thread.
 > ...
 
-原来 `Task` 就是我们平时在程序中使用的 **process** 或 **thread**。当然，由于嵌入式系统与我们平时使用的 **PC** 系统相比，硬件结构要简单的多，编程模型也相对来说比较简单。因此，FreeRTOS 中没有对 **process** 和 **thread** 进行区分，而是统一使用 `Task` 作为基本的执行单元。
+原来 `Task` 就是我们平时在程序中使用的 **Process** 或 **Thread**。当然，由于嵌入式系统与我们平时使用的 **PC** 系统相比，硬件结构要简单的多，编程模型也相对来说比较简单。因此，FreeRTOS 中没有对 **Process** 和 **Thread** 进行区分，而是统一使用 `Task` 作为基本的执行单元。
 
 在此，我们引用 FreeRTOS 官网上的话来描述任务：
 
@@ -27,7 +27,7 @@ FreeRTOS 的核心是任务管理，那么什么是任务？
 
 ### TCB_t
 
-FreeRTOS 的核心是任务管理，每个任务都有一些数据需要存储，包括任务状态，堆栈指针，统计数据等。FreeRTOS 把这些数据集合到一个数据结构中进行管理，这个数据结构就是结构体 `TCB_t`，被称作任务控制块。
+FreeRTOS 的核心是任务管理，每个任务都有一些数据需要存储，包括任务状态，堆栈指针，统计数据等。FreeRTOS 把这些数据集合到一个数据结构中进行管理，这个数据结构就是结构体 `TCB_t`，被称作**任务控制块**。
 
 每个任务都有各自独立的 `TCB_t`，一旦任务建立了，任务控制块将被赋值。当任务的 **CPU** 使用权被剥夺时，FreeRTOS 会用该结构体来保存该任务的状态。当任务重新得到 **CPU** 使用权时，任务控制块能确保任务从被中断的位置继续执行。
 
@@ -140,19 +140,19 @@ FreeRTOS 的核心是任务管理，每个任务都有一些数据需要存储�
 
 ### 全局变量
 
-**uxCurrentNumberOfTasks**：当前管理的任务数，包括所有就绪、阻塞和挂起的任务。已删除但空闲任务尚未释放的任务也将包含在计数中。
-**xTickCount**：内核的滴答计数。
-**uxTopReadyPriority**：在 **Cortex-M** 中以Bit位记录当前哪些优先级被使用，能通过该变量快速找出最高优先级。
-**xSchedulerRunning**：记录调度器是否处于运行状态。
-**uxPendedTicks**：当使用`vTaskSuspendAll`挂起调度器时，该变量跟踪这期间未被处理的Tick数量。
-**xYieldPending**：记录是否需要重新调度。
-**xNumOfOverflows**：记录定时器溢出次数。
-**uxTaskNumber**：记录全局任务数，每个任务会被分配一个唯一的 **Number** 作为 **ID**。
-**xNextTaskUnblockTime**：记录延时队列下一次需要唤醒的时间点。
-**xIdleTaskHandle**：空闲任务的句柄。
-**uxSchedulerSuspended**：调度器挂起标志。
-**ulTaskSwitchedInTime**：记录内核上次切换时的时间值。
-**ulTotalRunTime**：记录内核总运行时间。
+ - **uxCurrentNumberOfTasks**：当前管理的任务数，包括所有就绪、阻塞和挂起的任务。已删除但空闲任务尚未释放的任务也将包含在计数中。
+ - **xTickCount**：内核的滴答计数。
+ - **uxTopReadyPriority**：在 **Cortex-M** 中以Bit位记录当前哪些优先级被使用，能通过该变量快速找出最高优先级。
+ - **xSchedulerRunning**：记录调度器是否处于运行状态。
+ - **uxPendedTicks**：当使用`vTaskSuspendAll`挂起调度器时，该变量跟踪这期间未被处理的Tick数量。
+ - **xYieldPending**：记录是否需要重新调度。
+ - **xNumOfOverflows**：记录定时器溢出次数。
+ - **uxTaskNumber**：记录全局任务数，每个任务会被分配一个唯一的 **Number** 作为 **ID**。
+ - **xNextTaskUnblockTime**：记录延时队列下一次需要唤醒的时间点。
+ - **xIdleTaskHandle**：空闲任务的句柄。
+ - **uxSchedulerSuspended**：调度器挂起标志。
+ - **ulTaskSwitchedInTime**：记录内核上次切换时的时间值。
+ - **ulTotalRunTime**：记录内核总运行时间。
 
 ## 状态迁移
 
