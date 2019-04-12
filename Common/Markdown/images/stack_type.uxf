@@ -52,7 +52,7 @@ halign=center
     <panel_attributes>layer=3
 valign=center
 halign=left
-Empty Ascending stacks
+Empty Ascending Stack
 --
 PUSH R0 : *(SP++) = R0;
 POP R0 : R0 = *(--SP);</panel_attributes>
@@ -69,7 +69,7 @@ POP R0 : R0 = *(--SP);</panel_attributes>
     <panel_attributes>layer=3
 valign=center
 halign=left
-Empty Descending stacks
+Empty Descending Stack
 --
 PUSH R0 : *(SP--) = R0;
 POP R0 : R0 = *(++SP);</panel_attributes>
