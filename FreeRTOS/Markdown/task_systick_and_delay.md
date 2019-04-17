@@ -17,18 +17,18 @@ FreeRTOS 提供了一些宏来配置系统时钟的频率：
 
 ### 功能
 
+由实时内核调用，增加滴答计数，并检查是否有任务需要由阻塞状态切换到等待状态。
 
+需要注意，该函数是在临界状态下执行的。在时钟中断和调度器恢复这两个场景中会被使用：
+
+ 1. 时钟中断场景：需要使用 **vPortRaiseBASEPRI / vPortClearBASEPRIFromISR** 进行临界区保护。
+ 2. 调度器恢复场景：需要使用 **taskENTER_CRITICAL / taskEXIT_CRITICAL** 进行临界区保护。
 
 ### 原型
 
 ``` C
 BaseType_t xTaskIncrementTick( void );
 ```
-
-需要注意，该函数是在临界状态下执行的。在时钟中断和调度器恢复这两个场景中会被使用：
-
- 1. 时钟中断场景：需要使用 **vPortRaiseBASEPRI / vPortClearBASEPRIFromISR** 进行临界区保护。
- 2. 调度器恢复场景：需要使用 **taskENTER_CRITICAL / taskEXIT_CRITICAL** 进行临界区保护。
 
 ### 返回值
 
