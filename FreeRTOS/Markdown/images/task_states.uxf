@@ -185,4 +185,49 @@ xTaskCreateRestrictedStatic</panel_attributes>
     <panel_attributes>vTaskDelete - 通过IDLE线程释放资源</panel_attributes>
     <additional_attributes/>
   </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>870</x>
+      <y>130</y>
+      <w>210</w>
+      <h>310</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;180.0;190.0;180.0;190.0;290.0</additional_attributes>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>1060</x>
+      <y>370</y>
+      <w>110</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>vTaskDelay
+vTaskDelayUntil</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>640</x>
+      <y>130</y>
+      <w>220</w>
+      <h>310</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;290.0;10.0;180.0;200.0;180.0;200.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>720</x>
+      <y>150</y>
+      <w>120</w>
+      <h>20</h>
+    </coordinates>
+    <panel_attributes>xTaskAbortDelay</panel_attributes>
+    <additional_attributes/>
+  </element>
 </diagram>

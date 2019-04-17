@@ -15,6 +15,10 @@ FreeRTOS 提供了一些宏来配置系统时钟的频率：
 
 ## xTaskIncrementTick
 
+### 功能
+
+
+
 ### 原型
 
 ``` C
@@ -28,7 +32,7 @@ BaseType_t xTaskIncrementTick( void );
 
 ### 返回值
 
-如果该函数返回真，表明应该发起一次上下文切换（有高优先级任务或同优先级任务需要切换），后续可以手动触发一次 **PendSV** 中断，进行上下文切换。
+如果该函数返回非0，表明应该发起一次上下文切换（有高优先级任务或同优先级任务需要切换）。
 
 ### 流程
 
@@ -48,23 +52,30 @@ BaseType_t xTaskIncrementTick( void );
 
 ## vTaskSuspendAll
 
+### 功能
+
+在不禁用中断的情况下挂起调度器。需要注意：
+
+ - 不能在挂起状态下调用可能导致上下文切换的函数，比如 **vTaskDelay**，**vTaskDelayUntil**，**xQueueSend** 等。
+ - 该函数与 **xTaskResumeAll** 配对使用，通过变量 **uxSchedulerSuspended** 记录调度器的状态，每次挂起时变量加1，恢复时变量减1。
+
 ### 原型
 
 ``` C
 void vTaskSuspendAll( void );
 ```
 
-该函数与 **xTaskResumeAll** 配对使用，通过变量 **uxSchedulerSuspended** 记录调度器的状态，每次挂起时变量加1，恢复时变量减1。
-
 ## xTaskResumeAll
+
+### 功能
+
+恢复由 **vTaskSuspendAll** 挂起的调度器。该函数不会取消使用 **vTaskSuspend** 挂起的任务。
 
 ### 原型
 
 ``` C
 BaseType_t xTaskResumeAll( void );
 ```
-
-该函数与 **vTaskSuspendAll** 配对使用，不会取消使用 **vTaskSuspend** 挂起的任务。
 
 ### 返回值
 
@@ -76,6 +87,10 @@ BaseType_t xTaskResumeAll( void );
 
 ## vTaskDelay
 
+### 功能
+
+阻塞任务一定时间。
+
 ### 原型
 
 ``` C
@@ -84,9 +99,13 @@ void vTaskDelay( const TickType_t xTicksToDelay );
 
 ### 参数
 
- - xTicksToDelay：需要延时的系统时钟节拍数，可以用 **pdMS_TO_TICKS** 将需要延时的毫秒值转换为系统时钟的节拍数。
+ - xTicksToDelay：需要阻塞的系统时钟节拍数。可以用 **pdMS_TO_TICKS** 将需要延时的毫秒值转换为系统时钟的节拍数。
 
 ## vTaskDelayUntil
+
+### 功能
+
+将任务阻塞到指定的时间。该函数可以被周期性的任务调用，以确保恒定的执行频率。
 
 ### 原型
 
@@ -97,9 +116,13 @@ void vTaskDelayUntil( TickType_t * const pxPreviousWakeTime, const TickType_t xT
 ### 参数
 
  - pxPreviousWakeTime：指向一个变量，该变量保存任务最后一次解除阻塞的时间。第一次使用前，该变量必须初始化为当前时间。
- - xTimeIncrement：周期循环时间。
+ - xTimeIncrement：周期循环的时钟节拍数。可以用 **pdMS_TO_TICKS** 将需要延时的毫秒值转换为系统时钟的节拍数。
 
 ## xTaskAbortDelay
+
+### 功能
+
+强制任务离开阻塞状态，进入就绪状态。
 
 ### 原型
 
@@ -109,12 +132,11 @@ BaseType_t xTaskAbortDelay( TaskHandle_t xTask );
 
 ### 参数
 
- - xTask：
+ - xTask：任务句柄。
 
 ### 返回值
 
-
+如果任务没有处于阻塞状态，则返回假。否则返回真。
 
  [1]: ./images/xTaskIncrementTick.jpg
  [2]: ./images/xTaskResumeAll.jpg
-
