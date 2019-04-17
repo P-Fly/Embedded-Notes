@@ -4,7 +4,7 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>180</x>
+      <x>150</x>
       <y>110</y>
       <w>190</w>
       <h>110</h>
@@ -16,7 +16,7 @@ m2=Y</panel_attributes>
   <element>
     <id>UMLSpecialState</id>
     <coordinates>
-      <x>350</x>
+      <x>320</x>
       <y>80</y>
       <w>220</w>
       <h>80</h>
@@ -28,7 +28,7 @@ m2=Y</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>560</x>
+      <x>530</x>
       <y>110</y>
       <w>190</w>
       <h>110</h>
@@ -40,7 +40,7 @@ m2=N</panel_attributes>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>570</x>
+      <x>540</x>
       <y>200</y>
       <w>320</w>
       <h>40</h>
@@ -51,7 +51,7 @@ m2=N</panel_attributes>
   <element>
     <id>UMLSpecialState</id>
     <coordinates>
-      <x>620</x>
+      <x>590</x>
       <y>290</y>
       <w>220</w>
       <h>80</h>
@@ -64,7 +64,7 @@ m2=N</panel_attributes>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>570</x>
+      <x>540</x>
       <y>420</y>
       <w>320</w>
       <h>60</h>
@@ -77,7 +77,7 @@ pxDelayedTaskList 和 pxOverflowDelayedTaskList
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>30</x>
+      <x>0</x>
       <y>200</y>
       <w>320</w>
       <h>40</h>
@@ -88,7 +88,7 @@ pxDelayedTaskList 和 pxOverflowDelayedTaskList
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>720</x>
+      <x>690</x>
       <y>320</y>
       <w>410</w>
       <h>260</h>
@@ -100,7 +100,7 @@ m2=N</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>720</x>
+      <x>690</x>
       <y>630</y>
       <w>40</w>
       <h>130</h>
@@ -112,7 +112,7 @@ m2=Y</panel_attributes>
   <element>
     <id>UMLSpecialState</id>
     <coordinates>
-      <x>450</x>
+      <x>420</x>
       <y>20</y>
       <w>20</w>
       <h>20</h>
@@ -123,7 +123,7 @@ m2=Y</panel_attributes>
   <element>
     <id>UMLSpecialState</id>
     <coordinates>
-      <x>620</x>
+      <x>590</x>
       <y>560</y>
       <w>220</w>
       <h>80</h>
@@ -135,7 +135,7 @@ m2=Y</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>720</x>
+      <x>690</x>
       <y>810</y>
       <w>40</w>
       <h>440</h>
@@ -147,7 +147,7 @@ m2=Y</panel_attributes>
   <element>
     <id>UMLSpecialState</id>
     <coordinates>
-      <x>620</x>
+      <x>590</x>
       <y>740</y>
       <w>220</w>
       <h>80</h>
@@ -159,7 +159,7 @@ m2=Y</panel_attributes>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>950</x>
+      <x>920</x>
       <y>870</y>
       <w>320</w>
       <h>40</h>
@@ -170,7 +170,7 @@ m2=Y</panel_attributes>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>1330</x>
+      <x>1300</x>
       <y>1230</y>
       <w>320</w>
       <h>40</h>
@@ -182,7 +182,7 @@ m2=Y</panel_attributes>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>950</x>
+      <x>920</x>
       <y>1440</y>
       <w>320</w>
       <h>40</h>
@@ -194,7 +194,7 @@ m2=Y</panel_attributes>
   <element>
     <id>Text</id>
     <coordinates>
-      <x>380</x>
+      <x>350</x>
       <y>0</y>
       <w>160</w>
       <h>20</h>
@@ -208,7 +208,7 @@ xTaskIncrementTick</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>450</x>
+      <x>420</x>
       <y>20</y>
       <w>30</w>
       <h>80</h>
@@ -219,7 +219,7 @@ xTaskIncrementTick</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>720</x>
+      <x>690</x>
       <y>230</y>
       <w>30</w>
       <h>80</h>
@@ -230,7 +230,7 @@ xTaskIncrementTick</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>720</x>
+      <x>690</x>
       <y>360</y>
       <w>40</w>
       <h>80</h>
@@ -242,7 +242,7 @@ m2=Y</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>720</x>
+      <x>690</x>
       <y>470</y>
       <w>30</w>
       <h>110</h>
@@ -253,7 +253,7 @@ m2=Y</panel_attributes>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>570</x>
+      <x>540</x>
       <y>1230</y>
       <w>320</w>
       <h>40</h>
@@ -265,7 +265,7 @@ m2=Y</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>830</x>
+      <x>800</x>
       <y>770</y>
       <w>300</w>
       <h>120</h>
@@ -277,7 +277,7 @@ m2=N</panel_attributes>
   <element>
     <id>UMLSpecialState</id>
     <coordinates>
-      <x>1000</x>
+      <x>970</x>
       <y>960</y>
       <w>220</w>
       <h>80</h>
@@ -290,7 +290,7 @@ m2=N</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1100</x>
+      <x>1070</x>
       <y>900</y>
       <w>30</w>
       <h>80</h>
@@ -301,7 +301,7 @@ m2=N</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1100</x>
+      <x>1070</x>
       <y>1030</y>
       <w>40</w>
       <h>220</h>
@@ -313,7 +313,7 @@ m2=N</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1210</x>
+      <x>1180</x>
       <y>990</y>
       <w>300</w>
       <h>120</h>
@@ -325,7 +325,7 @@ m2=Y</panel_attributes>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>950</x>
+      <x>920</x>
       <y>1230</y>
       <w>320</w>
       <h>40</h>
@@ -336,13 +336,13 @@ m2=Y</panel_attributes>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>1330</x>
+      <x>1300</x>
       <y>1090</y>
       <w>320</w>
       <h>80</h>
     </coordinates>
     <panel_attributes>halign=Left
-1. 从阻塞链表上删除该任务
+1. 从 pxDelayedTaskList 链表上删除该任务
 2. 如果该任务在等待消息则从消息链表中删除
 3. 将该任务挂载至等待链表上</panel_attributes>
     <additional_attributes/>
@@ -350,7 +350,7 @@ m2=Y</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1480</x>
+      <x>1450</x>
       <y>1160</y>
       <w>30</w>
       <h>90</h>
@@ -361,7 +361,7 @@ m2=Y</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>720</x>
+      <x>690</x>
       <y>700</y>
       <w>1020</w>
       <h>640</h>
@@ -372,7 +372,7 @@ m2=Y</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1100</x>
+      <x>1070</x>
       <y>1260</y>
       <w>30</w>
       <h>200</h>
@@ -383,7 +383,7 @@ m2=Y</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>720</x>
+      <x>690</x>
       <y>1260</y>
       <w>410</w>
       <h>200</h>
@@ -394,7 +394,7 @@ m2=Y</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>480</x>
+      <x>450</x>
       <y>590</y>
       <w>650</w>
       <h>870</h>
@@ -406,7 +406,7 @@ m2=N</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>180</x>
+      <x>150</x>
       <y>230</y>
       <w>570</w>
       <h>1370</h>
@@ -417,7 +417,7 @@ m2=N</panel_attributes>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>570</x>
+      <x>540</x>
       <y>1580</y>
       <w>320</w>
       <h>40</h>
@@ -429,7 +429,7 @@ m2=N</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>720</x>
+      <x>690</x>
       <y>1470</y>
       <w>410</w>
       <h>130</h>
@@ -440,7 +440,7 @@ m2=N</panel_attributes>
   <element>
     <id>UMLSpecialState</id>
     <coordinates>
-      <x>720</x>
+      <x>690</x>
       <y>1680</y>
       <w>20</w>
       <h>20</h>
@@ -451,7 +451,7 @@ m2=N</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>720</x>
+      <x>690</x>
       <y>1610</y>
       <w>30</w>
       <h>90</h>
