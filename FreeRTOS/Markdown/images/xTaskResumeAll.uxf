@@ -5,7 +5,7 @@
     <id>UMLSpecialState</id>
     <coordinates>
       <x>150</x>
-      <y>10</y>
+      <y>0</y>
       <w>20</w>
       <h>20</h>
     </coordinates>
@@ -16,7 +16,7 @@
     <id>UMLSpecialState</id>
     <coordinates>
       <x>50</x>
-      <y>230</y>
+      <y>220</y>
       <w>220</w>
       <h>80</h>
     </coordinates>
@@ -28,7 +28,7 @@
     <id>UMLState</id>
     <coordinates>
       <x>70</x>
-      <y>70</y>
+      <y>60</y>
       <w>200</w>
       <h>40</h>
     </coordinates>
@@ -40,7 +40,7 @@ taskENTER_CRITICAL</panel_attributes>
     <id>UMLState</id>
     <coordinates>
       <x>20</x>
-      <y>150</y>
+      <y>140</y>
       <w>300</w>
       <h>40</h>
     </coordinates>
@@ -51,7 +51,7 @@ taskENTER_CRITICAL</panel_attributes>
     <id>UMLSpecialState</id>
     <coordinates>
       <x>230</x>
-      <y>330</y>
+      <y>320</y>
       <w>220</w>
       <h>80</h>
     </coordinates>
@@ -63,7 +63,7 @@ taskENTER_CRITICAL</panel_attributes>
     <id>UMLState</id>
     <coordinates>
       <x>590</x>
-      <y>530</y>
+      <y>520</y>
       <w>320</w>
       <h>40</h>
     </coordinates>
@@ -75,7 +75,7 @@ taskENTER_CRITICAL</panel_attributes>
     <id>UMLState</id>
     <coordinates>
       <x>590</x>
-      <y>610</y>
+      <y>600</y>
       <w>320</w>
       <h>40</h>
     </coordinates>
@@ -87,7 +87,7 @@ taskENTER_CRITICAL</panel_attributes>
     <id>UMLSpecialState</id>
     <coordinates>
       <x>410</x>
-      <y>430</y>
+      <y>420</y>
       <w>220</w>
       <h>80</h>
     </coordinates>
@@ -99,7 +99,7 @@ xPendingReadyList 是否为空</panel_attributes>
     <id>UMLState</id>
     <coordinates>
       <x>590</x>
-      <y>690</y>
+      <y>680</y>
       <w>320</w>
       <h>40</h>
     </coordinates>
@@ -110,7 +110,7 @@ xPendingReadyList 是否为空</panel_attributes>
     <id>UMLState</id>
     <coordinates>
       <x>590</x>
-      <y>770</y>
+      <y>760</y>
       <w>320</w>
       <h>50</h>
     </coordinates>
@@ -122,7 +122,7 @@ xPendingReadyList 是否为空</panel_attributes>
     <id>UMLState</id>
     <coordinates>
       <x>590</x>
-      <y>860</y>
+      <y>850</y>
       <w>320</w>
       <h>40</h>
     </coordinates>
@@ -134,7 +134,7 @@ xPendingReadyList 是否为空</panel_attributes>
     <id>UMLState</id>
     <coordinates>
       <x>60</x>
-      <y>980</y>
+      <y>970</y>
       <w>200</w>
       <h>40</h>
     </coordinates>
@@ -146,7 +146,7 @@ taskEXIT_CRITICAL</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>150</x>
-      <y>20</y>
+      <y>10</y>
       <w>30</w>
       <h>70</h>
     </coordinates>
@@ -157,7 +157,7 @@ taskEXIT_CRITICAL</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>150</x>
-      <y>100</y>
+      <y>90</y>
       <w>30</w>
       <h>70</h>
     </coordinates>
@@ -168,7 +168,7 @@ taskEXIT_CRITICAL</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>150</x>
-      <y>180</y>
+      <y>170</y>
       <w>30</w>
       <h>70</h>
     </coordinates>
@@ -179,7 +179,7 @@ taskEXIT_CRITICAL</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>260</x>
-      <y>260</y>
+      <y>250</y>
       <w>100</w>
       <h>90</h>
     </coordinates>
@@ -191,19 +191,19 @@ m2=N</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>440</x>
-      <y>360</y>
+      <y>350</y>
       <w>100</w>
       <h>90</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-m2=N</panel_attributes>
+m2=Y</panel_attributes>
     <additional_attributes>80.0;70.0;80.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>620</x>
-      <y>460</y>
+      <y>450</y>
       <w>150</w>
       <h>90</h>
     </coordinates>
@@ -215,7 +215,7 @@ m2=N</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>740</x>
-      <y>560</y>
+      <y>550</y>
       <w>30</w>
       <h>70</h>
     </coordinates>
@@ -226,7 +226,7 @@ m2=N</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>920</x>
-      <y>460</y>
+      <y>450</y>
       <w>90</w>
       <h>110</h>
     </coordinates>
@@ -237,7 +237,7 @@ m2=N</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>920</x>
-      <y>540</y>
+      <y>530</y>
       <w>90</w>
       <h>110</h>
     </coordinates>
@@ -248,7 +248,7 @@ m2=N</panel_attributes>
     <id>Text</id>
     <coordinates>
       <x>1000</x>
-      <y>530</y>
+      <y>520</y>
       <w>60</w>
       <h>40</h>
     </coordinates>
@@ -261,7 +261,7 @@ halign=right
     <id>Relation</id>
     <coordinates>
       <x>740</x>
-      <y>640</y>
+      <y>630</y>
       <w>30</w>
       <h>70</h>
     </coordinates>
@@ -272,7 +272,7 @@ halign=right
     <id>Relation</id>
     <coordinates>
       <x>740</x>
-      <y>720</y>
+      <y>710</y>
       <w>30</w>
       <h>70</h>
     </coordinates>
@@ -283,7 +283,7 @@ halign=right
     <id>Relation</id>
     <coordinates>
       <x>740</x>
-      <y>810</y>
+      <y>800</y>
       <w>30</w>
       <h>70</h>
     </coordinates>
@@ -294,7 +294,7 @@ halign=right
     <id>Relation</id>
     <coordinates>
       <x>150</x>
-      <y>300</y>
+      <y>290</y>
       <w>40</w>
       <h>700</h>
     </coordinates>
@@ -306,7 +306,7 @@ m2=Y</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>150</x>
-      <y>890</y>
+      <y>880</y>
       <w>620</w>
       <h>110</h>
     </coordinates>
@@ -317,24 +317,24 @@ m2=Y</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>150</x>
-      <y>400</y>
+      <y>390</y>
       <w>220</w>
       <h>600</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-m2=Y</panel_attributes>
+m2=N</panel_attributes>
     <additional_attributes>10.0;580.0;10.0;540.0;190.0;540.0;190.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>150</x>
-      <y>500</y>
-      <w>400</w>
-      <h>500</h>
+      <x>510</x>
+      <y>490</y>
+      <w>260</w>
+      <h>270</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 m2=Y</panel_attributes>
-    <additional_attributes>10.0;480.0;10.0;440.0;370.0;440.0;370.0;10.0</additional_attributes>
+    <additional_attributes>240.0;250.0;10.0;250.0;10.0;10.0</additional_attributes>
   </element>
 </diagram>

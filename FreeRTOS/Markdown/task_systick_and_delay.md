@@ -85,11 +85,16 @@ BaseType_t xTaskResumeAll( void );
 
 ![xTaskResumeAll][2]
 
+对于 **xTaskResumeAll**，主要功能有两点：
+
+ 1. 将消息链表 **xPendingReadyList** 中的任务挂载到等待链表中。
+ 2. 通过调用 **xTaskIncrementTick**，恢复处理因为调度器挂起而丢失的时钟节拍。
+
 ## vTaskDelay
 
 ### 功能
 
-阻塞任务一定时间。
+将任务阻塞一定时间。
 
 ### 原型
 
@@ -101,11 +106,24 @@ void vTaskDelay( const TickType_t xTicksToDelay );
 
  - xTicksToDelay：需要阻塞的系统时钟节拍数。可以用 **pdMS_TO_TICKS** 将需要延时的毫秒值转换为系统时钟的节拍数。
 
+### 其它
+
+在 **vTaskDelay** 中，会调用 **prvAddCurrentTaskToDelayedList** 处理延时队列的挂载流程，在该接口中对唤醒时间的处理比较有趣。
+
+![prvAddCurrentTaskToDelayedList][3]
+
+如上图，假设当前时钟位置为 **xTickCount**，需要唤醒的时间为 **xTimeToWake**（**xTickCount** + **xTicksToWait**），此时唤醒时间有三个可能的区域：
+ - 区域1：将任务挂载到 **pxDelayedTaskList** 链表上，并更新下一次唤醒时间 **xNextTaskUnblockTime**。
+ - 区域2：将任务挂载到 **pxDelayedTaskList** 链表上。
+ - 区域3：此时虽然唤醒时间已经溢出，但是它必定小于 **xTickCount**，并且大于延时链表所能代表的最大时间，可以理解为此部分区域被映射到了溢出延时链表上。因此需要将任务挂载到 **pxOverflowDelayedTaskList** 链表上。
+
 ## vTaskDelayUntil
 
 ### 功能
 
 将任务阻塞到指定的时间。该函数可以被周期性的任务调用，以确保恒定的执行频率。
+
+该函数与 **vTaskDelay** 最大的区别在于：**vTaskDelayUntil** 不会因为任务本身运行时间的长短影响到任务周期调度的准确性。
 
 ### 原型
 
@@ -117,6 +135,16 @@ void vTaskDelayUntil( TickType_t * const pxPreviousWakeTime, const TickType_t xT
 
  - pxPreviousWakeTime：指向一个变量，该变量保存任务最后一次解除阻塞的时间。第一次使用前，该变量必须初始化为当前时间。
  - xTimeIncrement：周期循环的时钟节拍数。可以用 **pdMS_TO_TICKS** 将需要延时的毫秒值转换为系统时钟的节拍数。
+
+### 其它
+
+在 **vTaskDelayUntil** 中，有三个需要休眠的场景：
+
+![vTaskDelayUntil][4]
+
+ - 1_1 当前系统时钟已经溢出，且唤醒时间处于 **xTickCount** 和 **pxPreviousWakeTime** 之间。
+ - 2_1 当前系统时钟没有溢出，并且唤醒时间也没有溢出。
+ - 2_2 当前系统时钟没有溢出，但唤醒时间已经溢出，但唤醒时间小于 **pxPreviousWakeTime**。
 
 ## xTaskAbortDelay
 
@@ -132,7 +160,7 @@ BaseType_t xTaskAbortDelay( TaskHandle_t xTask );
 
 ### 参数
 
- - xTask：任务句柄。
+ - xTask：需要操作的任务句柄。
 
 ### 返回值
 
@@ -140,3 +168,5 @@ BaseType_t xTaskAbortDelay( TaskHandle_t xTask );
 
  [1]: ./images/xTaskIncrementTick.jpg
  [2]: ./images/xTaskResumeAll.jpg
+ [3]: ./images/prvAddCurrentTaskToDelayedList.jpg
+ [4]: ./images/vTaskDelayUntil.jpg
