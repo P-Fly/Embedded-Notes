@@ -56,7 +56,7 @@ BaseType_t xTaskIncrementTick( void );
 
  1. FreeRTOS 使用 **xTickCount** 来追踪时钟滴答数。假设 **xTickCount** 为 **32Bit**，那么它的取值范围是 **0 ~ 2^32 - 1**。
  2. 当唤醒时间 **xTimeToWake** 在这个范围内时，需要被唤醒的任务属于链表 **pxDelayedTaskList**。
- 3. 当唤醒时间 **xTimeToWake** 溢出时（**2^32 ~ 2^33 - 2**），需要被唤醒的任务属于链表 **pxOverflowDelayedTaskList**，表示时钟滴答数溢出后在考虑处理该任务。
+ 3. 当唤醒时间 **xTimeToWake** 溢出时（**2^32 ~ 2^33 - 2**），需要被唤醒的任务属于链表 **pxOverflowDelayedTaskList**，表示等待时钟滴答数溢出后在考虑处理该任务。
  4. 当时钟滴答数 **xTickCount** 溢出时，不需要重新计算任务延时，只需要将链表 **pxOverflowDelayedTaskList** 重新定义为链表 **pxDelayedTaskList** 即可；同理，当前链表 **pxDelayedTaskList** 已经没有任务了，那么它也可以被复用为 **pxOverflowDelayedTaskList**。
 
 ## vTaskSuspendAll
@@ -123,12 +123,12 @@ void vTaskDelay( const TickType_t xTicksToDelay );
 
 如上图，假设当前时钟位置为 **xTickCount**，需要唤醒的时间为 **xTimeToWake**（**xTickCount** + **xTicksToWait**），此时唤醒时间有三个可能的区域：
  - 区域1：将任务挂载到 **pxDelayedTaskList** 链表上，并更新下一次唤醒时间 **xNextTaskUnblockTime**。
- - 区域2：将任务挂载到 **pxDelayedTaskList** 链表上。
- - 区域3：此时虽然唤醒时间已经溢出，但是它必定小于 **xTickCount**，并且大于延时链表所能代表的最大时间，可以理解为此部分区域被映射到了溢出延时链表上。因此需要将任务挂载到 **pxOverflowDelayedTaskList** 链表上。
+ - 区域2：将任务挂载到 **pxDelayedTaskList** 链表上，不需要更新下一次唤醒时间 **xNextTaskUnblockTime**。
+ - 区域3：此时虽然唤醒时间已经溢出，但是它必定小于 **xTickCount**，并且大于延时链表所能代表的最大时间，可以理解为此部分区域被映射到了溢出延时链表上，因此只需要将任务挂载到 **pxOverflowDelayedTaskList** 链表上即可。待 **xTickCount** 溢出时，再重新计算下一次唤醒时间 **xNextTaskUnblockTime**。
 
 ## vTaskDelayUntil
 
-### 功能
+### 计算任务延时
 
 将任务阻塞到指定的时间。该函数可以被周期性的任务调用，以确保恒定的执行频率。
 
@@ -145,15 +145,15 @@ void vTaskDelayUntil( TickType_t * const pxPreviousWakeTime, const TickType_t xT
  - pxPreviousWakeTime：指向一个变量，该变量保存任务最后一次解除阻塞的时间。第一次使用前，该变量必须初始化为当前时间。
  - xTimeIncrement：周期循环的时钟节拍数。可以用 **pdMS_TO_TICKS** 将需要延时的毫秒值转换为系统时钟的节拍数。
 
-### 其它
+### 计算任务延时
 
-在 **vTaskDelayUntil** 中，有三个需要休眠的场景：
+在 **vTaskDelayUntil** 中，有三个场景需要休眠：
 
 ![vTaskDelayUntil][4]
 
- - 1_1 当前系统时钟已经溢出，且唤醒时间处于 **xTickCount** 和 **pxPreviousWakeTime** 之间。
+ - 1_1 当前系统时钟已经溢出，且唤醒时间位于 **xTickCount** 和 **pxPreviousWakeTime** 之间。
  - 2_1 当前系统时钟没有溢出，并且唤醒时间也没有溢出。
- - 2_2 当前系统时钟没有溢出，但唤醒时间已经溢出，但唤醒时间小于 **pxPreviousWakeTime**。
+ - 2_2 当前系统时钟没有溢出，但唤醒时间已经溢出。
 
 ## xTaskAbortDelay
 
