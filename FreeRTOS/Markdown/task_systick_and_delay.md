@@ -50,6 +50,15 @@ BaseType_t xTaskIncrementTick( void );
     - 当调用 **vTaskSuspendAll** 挂起调度器后，在时钟中断中就不对阻塞任务进行处理，只会递增计数器 **uxPendedTicks**。
     - 当调用 **xTaskResumeAll** 恢复调度器时，会在该接口中反复调用 **uxPendedTicks** 次 **xTaskIncrementTick**接口。以模拟 FreeRTOS 挂起的这段时间内阻塞任务的状态变化。
 
+### 关于计数器溢出和交换链表
+
+![tick overflow][5]
+
+ 1. FreeRTOS 使用 **xTickCount** 来追踪时钟滴答数。假设 **xTickCount** 为 **32Bit**，那么它的取值范围是 **0 ~ 2^32 - 1**。
+ 2. 当唤醒时间 **xTimeToWake** 在这个范围内时，需要被唤醒的任务属于链表 **pxDelayedTaskList**。
+ 3. 当唤醒时间 **xTimeToWake** 溢出时（**2^32 ~ 2^33 - 2**），需要被唤醒的任务属于链表 **pxOverflowDelayedTaskList**，表示时钟滴答数溢出后在考虑处理该任务。
+ 4. 当时钟滴答数 **xTickCount** 溢出时，不需要重新计算任务延时，只需要将链表 **pxOverflowDelayedTaskList** 重新定义为链表 **pxDelayedTaskList** 即可；同理，当前链表 **pxDelayedTaskList** 已经没有任务了，那么它也可以被复用为 **pxOverflowDelayedTaskList**。
+
 ## vTaskSuspendAll
 
 ### 功能
@@ -170,3 +179,4 @@ BaseType_t xTaskAbortDelay( TaskHandle_t xTask );
  [2]: ./images/xTaskResumeAll.jpg
  [3]: ./images/prvAddCurrentTaskToDelayedList.jpg
  [4]: ./images/vTaskDelayUntil.jpg
+ [5]: ./images/tick_overflow.jpg
