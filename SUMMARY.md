@@ -20,6 +20,7 @@
         - [系统时钟与任务延时](FreeRTOS/Markdown/task_systick_and_delay.md)
     - Misc
         - [中断优先级](FreeRTOS/Markdown/misc_interrupt_priority.md)
+        - [xPendingReadyList 链表](FreeRTOS/Markdown/misc_xpendingreadylist.md)
 
 ---
 
