@@ -96,7 +96,7 @@ BaseType_t xTaskResumeAll( void );
 
 对于 **xTaskResumeAll**，主要功能有两点：
 
- 1. 将消息链表 **xPendingReadyList** 中的任务挂载到等待链表中。
+ 1. 将消息链表 **xPendingReadyList** 中的任务挂载到等待链表中。关于链表 **xPendingReadyList** 更详细的讨论，可以参看文档：[xPendingReadyList链表][6]。
  2. 通过调用 **xTaskIncrementTick**，恢复处理因为调度器挂起而丢失的时钟节拍。
 
 ## vTaskDelay
@@ -180,3 +180,4 @@ BaseType_t xTaskAbortDelay( TaskHandle_t xTask );
  [3]: ./images/prvAddCurrentTaskToDelayedList.jpg
  [4]: ./images/vTaskDelayUntil.jpg
  [5]: ./images/tick_overflow.jpg
+ [6]: misc_xpendingreadylist.md
