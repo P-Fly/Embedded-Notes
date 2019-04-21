@@ -115,7 +115,7 @@ void vTaskDelay( const TickType_t xTicksToDelay );
 
  - xTicksToDelay：需要阻塞的系统时钟节拍数。可以用 **pdMS_TO_TICKS** 将需要延时的毫秒值转换为系统时钟的节拍数。
 
-### 其它
+### 计算任务延时
 
 在 **vTaskDelay** 中，会调用 **prvAddCurrentTaskToDelayedList** 处理延时队列的挂载流程，在该接口中对唤醒时间的处理比较有趣。
 
@@ -128,7 +128,7 @@ void vTaskDelay( const TickType_t xTicksToDelay );
 
 ## vTaskDelayUntil
 
-### 计算任务延时
+### 功能
 
 将任务阻塞到指定的时间。该函数可以被周期性的任务调用，以确保恒定的执行频率。
 
