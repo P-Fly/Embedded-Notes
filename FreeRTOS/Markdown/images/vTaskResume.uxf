@@ -5,31 +5,31 @@
     <id>Relation</id>
     <coordinates>
       <x>230</x>
-      <y>330</y>
+      <y>320</y>
       <w>240</w>
-      <h>290</h>
+      <h>320</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 m2=N</panel_attributes>
-    <additional_attributes>10.0;270.0;220.0;270.0;220.0;10.0;120.0;10.0</additional_attributes>
+    <additional_attributes>10.0;300.0;10.0;270.0;220.0;270.0;220.0;10.0;120.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>230</x>
-      <y>110</y>
+      <y>100</y>
       <w>280</w>
-      <h>610</h>
+      <h>650</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 m2=Y</panel_attributes>
-    <additional_attributes>10.0;590.0;260.0;590.0;260.0;10.0;120.0;10.0</additional_attributes>
+    <additional_attributes>10.0;630.0;10.0;590.0;260.0;590.0;260.0;10.0;120.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLSpecialState</id>
     <coordinates>
       <x>230</x>
-      <y>30</y>
+      <y>20</y>
       <w>20</w>
       <h>20</h>
     </coordinates>
@@ -40,7 +40,7 @@ m2=Y</panel_attributes>
     <id>UMLSpecialState</id>
     <coordinates>
       <x>130</x>
-      <y>80</y>
+      <y>70</y>
       <w>220</w>
       <h>80</h>
     </coordinates>
@@ -52,7 +52,7 @@ m2=Y</panel_attributes>
     <id>UMLState</id>
     <coordinates>
       <x>150</x>
-      <y>220</y>
+      <y>210</y>
       <w>200</w>
       <h>40</h>
     </coordinates>
@@ -64,7 +64,7 @@ taskENTER_CRITICAL</panel_attributes>
     <id>UMLState</id>
     <coordinates>
       <x>140</x>
-      <y>630</y>
+      <y>620</y>
       <w>200</w>
       <h>40</h>
     </coordinates>
@@ -76,7 +76,7 @@ taskEXIT_CRITICAL</panel_attributes>
     <id>UMLSpecialState</id>
     <coordinates>
       <x>130</x>
-      <y>300</y>
+      <y>290</y>
       <w>220</w>
       <h>80</h>
     </coordinates>
@@ -88,7 +88,7 @@ taskEXIT_CRITICAL</panel_attributes>
     <id>UMLState</id>
     <coordinates>
       <x>140</x>
-      <y>440</y>
+      <y>430</y>
       <w>200</w>
       <h>50</h>
     </coordinates>
@@ -101,7 +101,7 @@ taskEXIT_CRITICAL</panel_attributes>
     <id>UMLState</id>
     <coordinates>
       <x>80</x>
-      <y>530</y>
+      <y>520</y>
       <w>320</w>
       <h>40</h>
     </coordinates>
@@ -113,7 +113,7 @@ taskEXIT_CRITICAL</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>230</x>
-      <y>30</y>
+      <y>20</y>
       <w>30</w>
       <h>70</h>
     </coordinates>
@@ -124,7 +124,7 @@ taskEXIT_CRITICAL</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>230</x>
-      <y>150</y>
+      <y>140</y>
       <w>40</w>
       <h>90</h>
     </coordinates>
@@ -136,7 +136,7 @@ m2=N</panel_attributes>
     <id>UMLSpecialState</id>
     <coordinates>
       <x>230</x>
-      <y>740</y>
+      <y>730</y>
       <w>20</w>
       <h>20</h>
     </coordinates>
@@ -147,7 +147,7 @@ m2=N</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>230</x>
-      <y>250</y>
+      <y>240</y>
       <w>30</w>
       <h>70</h>
     </coordinates>
@@ -158,7 +158,7 @@ m2=N</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>230</x>
-      <y>480</y>
+      <y>470</y>
       <w>30</w>
       <h>70</h>
     </coordinates>
@@ -169,7 +169,7 @@ m2=N</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>230</x>
-      <y>560</y>
+      <y>550</y>
       <w>30</w>
       <h>90</h>
     </coordinates>
@@ -180,7 +180,7 @@ m2=N</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>230</x>
-      <y>370</y>
+      <y>360</y>
       <w>40</w>
       <h>90</h>
     </coordinates>
@@ -192,7 +192,7 @@ m2=Y</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>230</x>
-      <y>660</y>
+      <y>650</y>
       <w>30</w>
       <h>100</h>
     </coordinates>

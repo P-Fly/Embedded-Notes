@@ -135,11 +135,11 @@ portCLEAR_INTERRUPT_MASK_FROM_ISR</panel_attributes>
       <x>170</x>
       <y>230</y>
       <w>210</w>
-      <h>400</h>
+      <h>450</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-m2=Y</panel_attributes>
-    <additional_attributes>190.0;380.0;10.0;380.0;10.0;10.0</additional_attributes>
+m2=N</panel_attributes>
+    <additional_attributes>190.0;430.0;190.0;380.0;10.0;380.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -150,7 +150,7 @@ m2=Y</panel_attributes>
       <h>110</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-m2=N</panel_attributes>
+m2=Y</panel_attributes>
     <additional_attributes>80.0;90.0;80.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
@@ -194,10 +194,10 @@ m2=Y</panel_attributes>
       <x>350</x>
       <y>510</y>
       <w>400</w>
-      <h>120</h>
+      <h>170</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;100.0;380.0;100.0;380.0;10.0</additional_attributes>
+    <additional_attributes>10.0;150.0;10.0;100.0;380.0;100.0;380.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLSpecialState</id>
