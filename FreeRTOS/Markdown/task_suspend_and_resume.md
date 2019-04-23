@@ -68,5 +68,8 @@ BaseType_t xTaskResumeFromISR( TaskHandle_t xTaskToResume );
 
 ### 流程
 
+![xTaskResumeFromISR][3]
+
  [1]: ./images/vTaskSuspend.jpg
  [2]: ./images/vTaskResume.jpg
+ [3]: ./images/xTaskResumeFromISR.jpg
