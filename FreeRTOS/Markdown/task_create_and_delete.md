@@ -95,6 +95,12 @@ BaseType_t xTaskCreate( TaskFunction_t pxTaskCode,
 
 ## vTaskDelete
 
+### 功能
+
+从 FreeRTOS 中删除任务。要删除的任务将从所有就绪、阻塞、挂起和事件列表中删除。
+
+如果待删除的任务当前处于 **Running** 状态，则该任务的资源将在 **IDLE** 任务中被释放。
+
 ### 原型
 
 ``` C
