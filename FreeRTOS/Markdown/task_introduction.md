@@ -43,7 +43,7 @@ FreeRTOS 的核心是任务管理，每个任务都有一些数据需要存储�
 
 > ListItem_t xStateListItem;
 
-状态链表的节点项，FreeRTOS 根据任务所处的不同状态，将任务插入到对应的全局任务链表中（Ready, Blocked, Suspended）。
+状态链表的节点项，FreeRTOS 根据任务所处的不同状态，将任务插入到对应的全局任务链表中（Ready, Delay, Suspended）。
 
 > ListItem_t xEventListItem;
 
@@ -88,6 +88,7 @@ FreeRTOS 的核心是任务管理，每个任务都有一些数据需要存储�
 调试追踪时使用，用户可以设置自定义数值。
 
 > UBaseType_t uxBasePriority;
+
 > UBaseType_t uxMutexesHeld;
 
 在互斥锁中提供优先级继承机制，解决优先级反转的问题。
