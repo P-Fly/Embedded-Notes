@@ -29,12 +29,12 @@ BaseType_t xTaskCreate( TaskFunction_t pxTaskCode,
 
 ### 参数
 
- - **pxTaskCode**：提供函数指针，指向任务入口。
- - **pcName**：指定任务的名称。
- - **usStackDepth**：指定栈的深度，实际使用的字节空间为 **usStackDepth * sizeof(StackType_t)**。
- - **pvParameters**：提供任务参数。
- - **uxPriority**：提供任务优先级。
- - **pxCreatedTask**：返回任务句柄，供其它接口使用。
+ - **pxTaskCode**： 提供函数指针，指向任务入口。
+ - **pcName**： 指定任务的名称。
+ - **usStackDepth**： 指定栈的深度，实际使用的字节空间为 **usStackDepth * sizeof(StackType_t)**。
+ - **pvParameters**： 提供任务参数。
+ - **uxPriority**： 提供任务优先级。
+ - **pxCreatedTask**： 返回任务句柄，供其它接口使用。
 
 ### 流程
 
@@ -68,26 +68,26 @@ BaseType_t xTaskCreate( TaskFunction_t pxTaskCode,
 
     相关代码如下：
 
-``` C
-StackType_t *pxPortInitialiseStack( StackType_t *pxTopOfStack, TaskFunction_t pxCode, void *pvParameters )
-{
-    ...
-    /* A save method is being used that requires each task to maintain its
-    own exec return value. */
-    pxTopOfStack--;
-    *pxTopOfStack = portINITIAL_EXC_RETURN;
-    ...
-}
+    ``` C
+    StackType_t *pxPortInitialiseStack( StackType_t *pxTopOfStack, TaskFunction_t pxCode, void *pvParameters )
+    {
+        ...
+        /* A save method is being used that requires each task to maintain its
+        own exec return value. */
+        pxTopOfStack--;
+        *pxTopOfStack = portINITIAL_EXC_RETURN;
+        ...
+    }
 
-__asm void vPortSVCHandler( void )
-{
-    ...
-    /* Pop the core registers. */
-    ldmia r0!, {r4-r11, r14}
-    ...
-    bx r14
-}
-```
+    __asm void vPortSVCHandler( void )
+    {
+        ...
+        /* Pop the core registers. */
+        ldmia r0!, {r4-r11, r14}
+        ...
+        bx r14
+    }
+    ```
 
  4. 将新创建的 `TCB_t` 挂载到 `pxReadyTasksLists`
  
