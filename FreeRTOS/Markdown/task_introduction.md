@@ -164,12 +164,12 @@ FreeRTOS 的核心是任务管理，每个任务都有一些数据需要存储�
     - **pxCurrentTCB** 所指向的任务。
  - **Ready**：
     - 属于 **pxReadyTasksLists** 链表数组的任务。
-    - 属于 **xPendingReadyList** 链表的任务。
+    - 被挂载到消息链表 **xPendingReadyList** 上的任务，此时任务的状态项（**xStateListItem**）可能依然处于 **Delay** 或 **Suspended** 状态。
  - **Blocked**：
     - 属于 **pxDelayedTaskList** 链表的任务，该组任务可能被超时唤醒，也可能被事件唤醒。
     - 属于 **pxOverflowDelayedTaskList** 链表的任务，该组任务可能被超时唤醒，也可能被事件唤醒。
-    - 属于 **xSuspendedTaskList** 链表，但正在等待唤醒消息，即 *listLIST_ITEM_CONTAINER( &( pxTCB->xEventListItem ) ) != NULL*。
-    - 属于 **xSuspendedTaskList** 链表，但正在等待任务通知，即 *pxTCB->ucNotifyState == taskWAITING_NOTIFICATION*。
+    - 属于 **xSuspendedTaskList** 链表，但正在等待唤醒消息的任务。
+    - 属于 **xSuspendedTaskList** 链表，但正在等待任务通知的任务。
  - **Suspended**：
     - 属于 **xSuspendedTaskList** 链表，并且没有等待唤醒消息和任务通知。
  - **Deleted**：
