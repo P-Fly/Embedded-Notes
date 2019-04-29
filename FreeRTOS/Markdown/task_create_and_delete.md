@@ -48,6 +48,10 @@ BaseType_t xTaskCreate( TaskFunction_t pxTaskCode,
 
     对于 **Cortex-M3**，需要按照 **8Byte** 对齐，由 `portBYTE_ALIGNMENT_MASK` 定义。
 
+    详情可以参考 *Procedure Call Standard for the ARM Architecture*：
+
+    ![][5]
+
  3. 初始化栈空间
 
     `pxPortInitialiseStack` 负责初始化任务堆栈，并将最新的栈顶指针赋值给任务 `TCB_t` 的 `pxTopOfStack`。
@@ -119,3 +123,4 @@ void vTaskDelete( TaskHandle_t xTaskToDelete )
  [2]: ./images/exception_entry_behavior.jpg
  [3]: ./images/exc_return_definition.jpg
  [4]: ./images/vTaskDelete.jpg
+ [5]: ./images/stack_constraints.jpg
