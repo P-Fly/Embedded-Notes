@@ -30,14 +30,8 @@ portNVIC_INT_CTRL_REG = portNVIC_PENDSVSET_BIT;
 
 ## PendSV exception
 
-```armasm
-PRESERVE8
-````
-
-声明当前函数的栈需要 8Byte 对齐。
-
-- 产生中断前使用的是 **psp**，因此硬件自动将 **8** 个寄存器压入到任务栈。
-- 进入 **PendSV exception**，此时默认使用的是 **msp**。
+ - 产生中断前使用的是 **psp**，因此硬件自动将 **8** 个寄存器压入到任务栈。
+ - 进入 **PendSV exception**，此时 **sp** 默认使用 **msp**。
 
 ```armasm
 mrs r0, psp
@@ -47,23 +41,23 @@ ldr r2, [r3]
 ````
 
 对寄存器进行赋值：
-- r0 = psp
-- r3 = pxCurrentTCB
-- r2 = TCB_t
+ - **r0** = **psp**
+ - **r3** = **pxCurrentTCB**
+ - **r2** = **TCB_t**
 
 ```armasm
 stmdb r0!, {r4-r11, r14}
 ````
 
 将 **r4 - r11, r14** 寄存器的值存入用户堆栈，注意：
-- 当前默认的栈寄存器是 **msp**，而压入的是 **psp** 指向的位置。
-- 此处没有更新 **psp**，因此 **psp** 已经不能指向栈顶。 此时 **R0** 指向栈顶。
+ - 当前默认的栈寄存器是 **msp**，而压入的栈是 **psp** 指向的位置。
+ - 此处 **R0** 指向了栈顶，而 **psp** 没有更新。
 
 ```armasm
 str r0, [r2]
 ````
 
-更新 pxCurrentTCB->pxTopOfStack。
+更新 **pxCurrentTCB->pxTopOfStack**。
 
 ```armasm
 stmdb sp!, {r3}
@@ -77,11 +71,11 @@ msr basepri, r0
 ldmia sp!, {r3}
 ````
 
-- 备份 **R3** 寄存器到系统堆栈中 （因为在 `bl vTaskSwitchContext` 后还会用到该寄存器）。
-- 进入临界区，相当于调用了 `vPortRaiseBASEPRI`。
-- 调用 vTaskSwitchContext，该函数负责使 **pxCurrentTCB** 指向下一个需要执行的任务。
-- 退出临界区，相当于调用了 `vPortClearBASEPRIFromISR`。
-- 恢复 **R3** 寄存器。
+ - 备份 **R3** 寄存器到系统堆栈中 （因为在 `bl vTaskSwitchContext` 后还会用到该寄存器）。
+ - 进入临界区，相当于调用了 `vPortRaiseBASEPRI`。
+ - 调用 vTaskSwitchContext，该函数负责使 **pxCurrentTCB** 指向下一个需要执行的任务。
+ - 退出临界区，相当于调用了 `vPortClearBASEPRIFromISR`。（按照规定 **Cortex-M** 的 **PendSV exception** 必须是 **最低优先级**，因此可以用将 **basepri** 寄存器请 **0** 的方式打开中断）。
+ - 恢复 **R3** 寄存器。
 
 ```armasm
 ldr r1, [r3]
@@ -89,15 +83,15 @@ ldr r0, [r1]
 ldmia r0!, {r4-r11, r14}
 ```
 
-- 获取新的栈顶地址，r0 = pxCurrentTCB->pxTopOfStack。
-- 恢复 **R4 - R11, R14** 寄存器。
+ - 获取新的栈顶地址，r0 = pxCurrentTCB->pxTopOfStack。
+ - 恢复 **R4 - R11, R14** 寄存器。
 
 ```armasm
 msr psp, r0
 isb
 ```
 
-恢复堆栈寄存器。
+重新设置堆栈寄存器。
 
 ```armasm
 bx r14

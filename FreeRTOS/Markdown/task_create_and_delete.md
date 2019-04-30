@@ -6,11 +6,11 @@ FreeRTOS 的基本组成单位是任务，因此任务的管理尤为重要。�
 
 对于 FreeRTOS ，创建和删除任务的 API 如下：
 
-- **xTaskCreate**： 创建任务的基本接口。
-- **vTaskDelete**： 删除任务的基本接口。
-- **xTaskCreateStatic**： `TCB_t` 和 `Stack` 由用户直接提供，不从 `OS Heap` 中分配。
-- **xTaskCreateRestricted**： 输入参数中增加了对 **MPU** 的配置。
-- **xTaskCreateRestrictedStatic**： 静态版的 `xTaskCreateRestricted` 。
+ - **xTaskCreate**： 创建任务的基本接口。
+ - **vTaskDelete**： 删除任务的基本接口。
+ - **xTaskCreateStatic**： `TCB_t` 和 `Stack` 由用户直接提供，不从 `OS Heap` 中分配。
+ - **xTaskCreateRestricted**： 输入参数中增加了对 **MPU** 的配置。
+ - **xTaskCreateRestrictedStatic**： 静态版的 `xTaskCreateRestricted` 。
 
 其中，`xTaskCreate` 和 `vTaskDelete` 是最基本的 API，其它3个 API 只是做了一些参数上的扩展。因此我们需要重点分析 `xTaskCreate` 和 `vTaskDelete` 的实现。
 
