@@ -16,7 +16,7 @@
         - [任务介绍](FreeRTOS/Markdown/task_introduction.md)
         - [任务的创建与删除](FreeRTOS/Markdown/task_create_and_delete.md)
         - [调度器的启动](FreeRTOS/Markdown/task_start_scheduler.md)
-        - [X任务的调度](FreeRTOS/Markdown/task_yield.md)
+        - [任务的调度](FreeRTOS/Markdown/task_yield.md)
         - [系统时钟与任务延时](FreeRTOS/Markdown/task_systick_and_delay.md)
         - [任务的挂起与恢复](FreeRTOS/Markdown/task_suspend_and_resume.md)
     - Misc

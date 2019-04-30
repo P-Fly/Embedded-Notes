@@ -132,8 +132,8 @@
 
  7. 执行 **vPortSVCHandler**
 
+    - 产生中断前使用的是 **msp**，因此硬件自动将 **8** 个寄存器压入到系统栈。
     - 进入 **SVC exception**，此时默认使用的是 **msp**。
-    - 硬件自动将 **8** 个寄存器压入到系统栈。
 
     ```armasm
     ldr r3, =pxCurrentTCB
