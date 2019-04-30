@@ -132,6 +132,9 @@
 
  7. 执行 **vPortSVCHandler**
 
+    - 进入 **SVC exception**，此时默认使用的是 **msp**。
+    - 硬件自动将 **8** 个寄存器压入到系统栈。
+
     ```armasm
     ldr r3, =pxCurrentTCB
     ldr r1, [r3]
@@ -139,10 +142,9 @@
     ldmia r0!, {r4-r11, r14}
     ```
 
-    - 进入 **SVC exception**，此时栈自动切换为 **msp**。
     - 通过 **pxCurrentTCB** 找到下一个需要执行的任务的栈。
     - 将 **r4 - r11** 手动出栈 （其它寄存器由硬件自动退栈）。
-    - **r14** 寄存器恢复的数据在入栈时被设置为了 0xFFFFFFFD：表示退出 **SVC exception** 时自动切换为 **Thread mode**，并使用 **psp**。
+    - **r14** 寄存器恢复的数据在入栈时被设置为了 0xFFFFFFFD： 表示退出 **SVC exception** 时自动切换为 **Thread mode**，栈指针也切换为 **psp* （硬件出栈也使用该栈寄存器）。
 
     详情可以参考 *ARM®v7-M ArchitectureReference Manual*：
 
@@ -153,7 +155,7 @@
     isb
     ```
 
-    当前是 **handler mode** ，需要在退出前手动调整 **Thread mode** 下的 **psp**，设为 **pxCurrentTCB->pxTopOfStack**。
+    在退出前手动调整**psp**，设为 **pxCurrentTCB->pxTopOfStack**。
 
     ```armasm
     mov r0, #0
@@ -166,7 +168,7 @@
     bx r14
     ```
 
-    从 **SVC exception** 返回。
+    从 **SVC exception** 返回，进入 **Thread mode**，硬件使用 **psp** 恢复寄存器。
 
  [1]: ./images/vTaskStartScheduler.jpg
  [2]: ./images/basepri.jpg
