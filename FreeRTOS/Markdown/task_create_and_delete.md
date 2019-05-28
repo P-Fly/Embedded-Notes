@@ -97,6 +97,10 @@ BaseType_t xTaskCreate( TaskFunction_t pxTaskCode,
  
     `prvAddNewTaskToReadyList` 主要负责将新创建的任务挂载到等待链表中。同时它还会根据 FreeRTOS 的运行环境（FreeRTOS 是否启动、当前任务的优先级）和新建任务优先级的对比结果，进行适当的任务切换（`taskYIELD_IF_USING_PREEMPTION`），以保证当前运行的任务一定是优先级最高的任务。
 
+使用 xTaskCreate 创建的任务的详细信息如下图：
+
+![xTaskCreate view][6]
+
 ## vTaskDelete
 
 ### 功能
@@ -124,3 +128,4 @@ void vTaskDelete( TaskHandle_t xTaskToDelete )
  [3]: ./images/exc_return_definition.jpg
  [4]: ./images/vTaskDelete.jpg
  [5]: ./images/stack_constraints.jpg
+ [6]: ./images/xTaskCreate_view.jpg

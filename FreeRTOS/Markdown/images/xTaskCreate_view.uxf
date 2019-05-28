@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>220</x>
+      <y>110</y>
+      <w>110</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=-
+bg=pink
+TCB_t
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>220</x>
+      <y>200</y>
+      <w>110</w>
+      <h>350</h>
+    </coordinates>
+    <panel_attributes>lt=-
+bg=pink
+Stack
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>220</x>
+      <y>180</y>
+      <w>110</w>
+      <h>20</h>
+    </coordinates>
+    <panel_attributes>lt=-
+bg=gray</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>320</x>
+      <y>160</y>
+      <w>150</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+</panel_attributes>
+    <additional_attributes>10.0;20.0;130.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>320</x>
+      <y>180</y>
+      <w>140</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+</panel_attributes>
+    <additional_attributes>10.0;20.0;120.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>320</x>
+      <y>530</y>
+      <w>140</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+</panel_attributes>
+    <additional_attributes>10.0;20.0;120.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>330</x>
+      <y>520</y>
+      <w>110</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>style=wordwrap
+valign=center
+halign=center
+0x20001D78</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>330</x>
+      <y>200</y>
+      <w>110</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>style=wordwrap
+valign=center
+halign=center
+0x20002177</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>430</x>
+      <y>190</y>
+      <w>110</w>
+      <h>380</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;..&gt;&gt;&gt;
+Len = 0x400</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;360.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>100</x>
+      <y>530</y>
+      <w>140</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+</panel_attributes>
+    <additional_attributes>10.0;20.0;120.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>100</x>
+      <y>210</y>
+      <w>140</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+</panel_attributes>
+    <additional_attributes>10.0;20.0;120.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>50</x>
+      <y>520</y>
+      <w>170</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>style=wordwrap
+valign=center
+halign=center
+pxStack = 0x20001D78</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>10</x>
+      <y>230</y>
+      <w>210</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>style=wordwrap
+valign=center
+halign=center
+pxTopOfStack = 0x20002170</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>90</x>
+      <y>270</y>
+      <w>150</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+</panel_attributes>
+    <additional_attributes>10.0;20.0;130.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>10</x>
+      <y>290</y>
+      <w>210</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>style=wordwrap
+valign=center
+halign=center
+pxTopOfStack = 0x2000212C</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>220</x>
+      <y>230</y>
+      <w>110</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=-
+layer=1
+bg=green
+模拟压栈</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>320</x>
+      <y>20</y>
+      <w>270</w>
+      <h>260</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.
+</panel_attributes>
+    <additional_attributes>250.0;10.0;190.0;10.0;190.0;240.0;10.0;240.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>570</x>
+      <y>20</y>
+      <w>250</w>
+      <h>320</h>
+    </coordinates>
+    <panel_attributes>lt=-
+bg=green
+valign=center
+FirstFrame
+-
+0x20002170 = tskSTACK_FILL_BYTE
+0x2000216C = XPSR
+0x20002168 = PC
+0x20002164 = LR
+0x20002160 = R12
+0x2000215C = R3
+0x20002158 = R2
+0x20002154 = R12
+0x20002150 = R0
+0x2000214C = EXC_RETURN
+0x20002148 = R11
+0x20002144 = R10
+0x20002140 = R9
+0x2000213C = R8
+0x20002138 = R7
+0x20002134 = R6
+0x20002130 = R5
+0x2000212C = R4</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>330</x>
+      <y>150</y>
+      <w>110</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>style=wordwrap
+valign=center
+0x20002180</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
