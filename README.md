@@ -1,2 +1,2 @@
-# MCU-Notes
-MCU Notes
+# Embedded-Notes
+Embedded Notes

@@ -67,7 +67,7 @@
 
     - 中断优先级值越小，优先级越高。
     - 小于值 **configLIBRARY_MAX_SYSCALL_INTERRUPT_PRIORITY** 的中断由用户自行管理，不应该调用 FreeRTOS 的系统函数。
-    - FreeRTOS 只关心 **configLIBRARY_LOWEST_INTERRUPT_PRIORITY** 和 **configLIBRARY_MAX_SYSCALL_INTERRUPT_PRIORITY** 之间的中断，这部分中断可以调用中断安全函数(以 FromISR 后缀的系统函数）。
+    - FreeRTOS 只关心 **configLIBRARY_LOWEST_INTERRUPT_PRIORITY** 和 **configLIBRARY_MAX_SYSCALL_INTERRUPT_PRIORITY** 之间的中断，这部分中断可以调用中断安全函数（以 FromISR 后缀的系统函数）。
     - **SVC** 的中断优先级为 **configLIBRARY_MAX_SYSCALL_INTERRUPT_PRIORITY - 1**，它比所有 FreeRTOS 管理的中断的优先级都要高。
     - **PendSV** 和 **SysTick** 的优先级最低。
 
