@@ -2,7 +2,7 @@
 
 ## 前言
 
-任务间通信(ITC，Inter-task Communication)是一组编程接口，能让用户在不同的任务或中断与任务之间交换消息。
+任务间通信 (ITC，Inter-task Communication) 是一组编程接口，能让用户在不同的 **任务之间** 或 **中断与任务** 之间交换消息。
 
 ## 主要的方式
 
@@ -18,7 +18,7 @@
 
 ### Queue_t
 
-`Queue_t` 的成员如下：
+`Queue_t`是 freeRTOS 实现队列，信号量、互斥量等的基础，其成员如下：
 
 > int8_t *pcHead;
 
@@ -26,27 +26,23 @@
 
 > int8_t *pcWriteTo;
 
-指向队列存储区域中，下一个待写入的空闲位置。(即使用 \*(pcWriteTo++) = Item 的方式写入)。
+指向队列存储区域中，下一个待写入的空闲位置。(即新数据使用 **\*(pcWriteTo++) = Item** 的方式写入)。
 
 > int8_t *pcTail;
 
-用作标记，指向队列存储区域的结束处。
-**注意：该队列类型为 `Queue` 时使用该结构。**
+用作标记，指向队列存储区域的结束处。**队列类型为 `Queue` 时使用该结构。**
 
 > int8_t *pcReadFrom;
 
-指向队列存储区域中，最后一次读取队列项所在的位置。(即使用 Item = \*(++pcReadFrom) 的方式读取)。
-**注意：该队列类型为 `Queue` 时使用该结构。**
+指向队列存储区域中，最后一次读取队列项所在的位置。(即使用 **Item = \*(++pcReadFrom)** 的方式读取)。**队列类型为 `Queue` 时使用该结构。**
 
 > TaskHandle_t xMutexHolder;
 
-记录保持互斥的任务的句柄。
-**注意：该队列类型为 `Semaphore` 时使用该结构。**
+记录保持互斥的任务的句柄。**队列类型为 `Semaphore` 时使用该结构。**
 
 > UBaseType_t uxRecursiveCallCount;
 
-记录被递归的次数。
-**注意：该队列类型为 `Semaphore` 时使用该结构。**
+记录被递归的次数。**队列类型为 `Semaphore` 时使用该结构。**
 
 > List_t xTasksWaitingToSend;
 
