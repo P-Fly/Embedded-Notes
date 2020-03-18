@@ -6,14 +6,14 @@
     <coordinates>
       <x>590</x>
       <y>230</y>
-      <w>700</w>
+      <w>410</w>
       <h>30</h>
     </coordinates>
     <panel_attributes>lt=-
 bg=green
 valign=center
 halign=center
-Items</panel_attributes>
+Storage Buffer</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -70,11 +70,11 @@ uxItemSize = uxItemSize
     <coordinates>
       <x>400</x>
       <y>110</y>
-      <w>910</w>
+      <w>620</w>
       <h>140</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.</panel_attributes>
-    <additional_attributes>890.0;120.0;890.0;10.0;10.0;10.0</additional_attributes>
+    <additional_attributes>600.0;120.0;600.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -92,16 +92,16 @@ uxItemSize = uxItemSize
     <coordinates>
       <x>400</x>
       <y>130</y>
-      <w>860</w>
+      <w>570</w>
       <h>250</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>840.0;130.0;840.0;230.0;40.0;230.0;40.0;10.0;10.0;10.0</additional_attributes>
+    <additional_attributes>550.0;130.0;550.0;230.0;40.0;230.0;40.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1230</x>
+      <x>940</x>
       <y>220</y>
       <w>30</w>
       <h>60</h>
@@ -136,13 +136,13 @@ EMPTY</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>820</x>
+      <x>630</x>
       <y>260</y>
       <w>270</w>
       <h>30</h>
     </coordinates>
     <panel_attributes>lt=..
-Size = uxLength * uxItemSize</panel_attributes>
+Storage Size = uxLength * uxItemSize</panel_attributes>
     <additional_attributes/>
   </element>
 </diagram>
