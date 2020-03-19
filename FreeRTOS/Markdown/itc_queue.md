@@ -80,11 +80,15 @@ BaseType_t xQueueGenericSend( QueueHandle_t xQueue,
 
 ![xQueueGenericSend Sequence][3]
 
- 1. 需要注意
+ 1. 图中绿色部分为队列未满，能正常写入的流程。
+ 2. `prvCopyDataToQueue` 为数据入队的执行函数，有三种入队方式。
+ 3. 红色部分为队列的阻塞和唤醒流程：
+    - 当有高优先级任务被唤醒时，`xTaskResumeAll` 产生上下文切换。
+    - 当没有高优先级任务被唤醒时，`portYIELD_WITHIN_API` 产生上下文切换，此时切换至同优先级或低优先级任务。
 
-使用 `xQueueGenericSend` 入队后队列的数据结构如下图：
+使用 `prvCopyDataToQueue` 入队后队列的数据结构如下图：
 
-![xQueueGenericSend Structure][4]
+![prvCopyDataToQueue][4]
 
 ### xQueueGenericSendFromISR
 
@@ -142,5 +146,6 @@ xQueueGenericCreateStatic
 xQueueGenericReset -- No Public
 
 [1]: ./images/xQueueCreate.jpg
-[2]: ./images/xQueueCreate_structure.jpg
-
+[2]: ./images/xQueueCreate_Structure.jpg
+[3]: ./images/xQueueGenericSend.jpg
+[4]: ./images/prvCopyDataToQueue.jpg
