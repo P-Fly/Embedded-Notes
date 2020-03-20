@@ -81,7 +81,7 @@ BaseType_t xQueueGenericSend( QueueHandle_t xQueue,
 ![xQueueGenericSend Sequence][3]
 
  1. 图中绿色部分为队列未满，能正常写入的流程。
- 2. `prvCopyDataToQueue` 为数据入队的执行函数，有三种入队方式。
+ 2. `prvCopyDataToQueue` 为数据入队的执行函数。有三种入队方式：**queueSEND_TO_BACK**，**queueSEND_TO_FRONT**，**queueOVERWRITE**。
  3. 红色部分为队列的阻塞和唤醒流程：
     - 当有高优先级任务被唤醒时，`xTaskResumeAll` 产生上下文切换。
     - 当没有高优先级任务被唤醒时，`portYIELD_WITHIN_API` 产生上下文切换，此时切换至同优先级或低优先级任务。
@@ -109,43 +109,84 @@ BaseType_t xQueueGenericSendFromISR( QueueHandle_t xQueue,
 
 ![xQueueGenericSendFromISR Sequence][5]
 
- 1. 需要注意
-
-使用 `xQueueGenericSendFromISR` 入队后队列的数据结构如下图：
-
-![xQueueGenericSendFromISR Structure][6]
-
 ## 出队
 
-| API | 实际调用函数 | 入队方式 | 
-| :--- | :--- | :--- |
-|  |  |  |
-|  |  |  |
-|  |  |  |
+队列的出队方式如下表：
+
+ - 按照运行场景可分为两个版本：
+    - 可以在中断服务例程中使用
+    - 不可在中断服务例程中使用
+
+ - 按照出队方式可分为两种方式：
+    - 出队并删除数据项
+    - 出队不删除数据项
+
+| API | 出队方式 | 
+| :--- | :--- |
+| xQueueReceive | 出队并删除数据项 |
+| xQueuePeek | 出队不删除数据项 |
+| xQueueReceiveFromISR | 出队并删除数据项 |
+| xQueuePeekFromISR | 出队不删除数据项 |
+
+`xQueueReceive` 与 `xQueuePeek` 的区别在于是否删除队列中出队的数据，因此我们以 `xQueueReceive` 和 `xQueueReceiveFromISR` 为例进行分析:
+
+### xQueueReceive
+
+``` C
+BaseType_t xQueueReceive( QueueHandle_t xQueue,
+        void * const pvBuffer,
+        TickType_t xTicksToWait )
+```
+
+ - **xQueue**： 队列的句柄。
+ - **pvBuffer**： 接受出队Item的Buffer。
+ - **xTicksToWait**： 出队任务被阻塞的最大时间，如果设置为0则不被阻塞。
+ - **Return Value**： 出队成功或队列空。
+
+使用 `xQueueReceive` 出队的流程如下图：
+
+![xQueueReceive Sequence][6]
+
+### xQueueReceiveFromISR
+
+``` C
+BaseType_t xQueueReceiveFromISR( QueueHandle_t xQueue,
+        void * const pvBuffer,
+        BaseType_t * const pxHigherPriorityTaskWoken )
+```
+
+ - **xQueue**： 队列的句柄。
+ - **pvBuffer**： 接受出队Item的Buffer。
+ - **pxHigherPriorityTaskWoken**： 当该值返回 **True** 时，表明有更高优先级的任务被解除阻塞，需要在退出中断前发起一次上下文切换。
+ - **Return Value**： 出队成功或队列空。
+
+使用 `xQueueReceiveFromISR` 出队的流程如下图：
+
+![xQueueReceiveFromISR Sequence][7]
 
 ## 删除队列
 
-##
+### vQueueDelete
 
-锁是用于防止访问queue event lists，即：
-	List_t xTasksWaitingToSend;
-	List_t xTasksWaitingToReceive;
+``` C
+void vQueueDelete( QueueHandle_t xQueue )
+```
 
+ - **xQueue**： 队列的句柄。
 
+## 其它
 
-xQueuePeek
-xQueuePeekFromISR
-xQueueReceive
-vQueueDelete
-xQueueGiveFromISR
-xQueueReceiveFromISR
-xQueueReset
-xQueueGenericSend
-xQueueGenericSendFromISR
-xQueueGenericCreateStatic
-xQueueGenericReset -- No Public
+### 关于队列锁
+
+**FreeRTOS** 使用 `prvLockQueue` 和 `prvUnlockQueue` 对队列进行锁操作。
+这是因为 **FreeRTOS** 为了提高中断的响应时间在队列阻塞和唤醒操作时不会关闭中断，
+而是使用 `vTaskSuspendAll` 和 `xTaskResumeAll` 以关闭调度器的方式进行临界区保护。
+在调度器关闭时，任务链表会被锁定（比如 **pxDelayedTaskList**），但是
 
 [1]: ./images/xQueueCreate.jpg
 [2]: ./images/xQueueCreate_Structure.jpg
 [3]: ./images/xQueueGenericSend.jpg
 [4]: ./images/prvCopyDataToQueue.jpg
+[5]: ./images/xQueueGenericSendFromISR.jpg
+[6]: ./images/xQueueReceive.jpg
+[7]: ./images/xQueueReceiveFromISR.jpg
