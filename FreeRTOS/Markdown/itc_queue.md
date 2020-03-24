@@ -1,5 +1,19 @@
 # 队列
 
+## 简介
+
+`Queue` 是任务间通信的主要形式。可以用于在任务之间，以及中断和任务之间发送消息。在大多数情况下，它们被用作线程安全FIFO（先进先出）缓冲区，新数据可以被发送到队列的后面也可以发送到队列的前面。
+
+主要特点如下：
+
+ 1. 数据交互使用复制而不是引用的方式。
+    - 对于短消息，不需要内存动态申请，可以减少内存碎片。
+    - 对于大数据量的消息，可以通过传递指针的方式实现数据交互。
+ 2. 内核负责分配队列存储区域的内存，并提供数据的发送和读取接口，因此容易实现权限管理（MPU）。
+ 3. 中断中不能使用不以 **FromISR** 结尾的函数。
+
+ [Embedded-RTOS-Queues][8]
+
 ## 创建队列
 
 | API | 实际调用函数 |
@@ -178,15 +192,18 @@ void vQueueDelete( QueueHandle_t xQueue )
 
 ### 关于队列锁
 
-**FreeRTOS** 使用 `prvLockQueue` 和 `prvUnlockQueue` 对队列进行锁操作。
-这是因为 **FreeRTOS** 为了提高中断的响应时间在队列阻塞和唤醒操作时不会关闭中断，
-而是使用 `vTaskSuspendAll` 和 `xTaskResumeAll` 以关闭调度器的方式进行临界区保护。
-在调度器关闭时，任务链表会被锁定（比如 **pxDelayedTaskList**），但是
+**FreeRTOS** 为了提高中断的响应时间，在队列阻塞和唤醒操作时并不会关闭中断，而是使用 `vTaskSuspendAll` 和 `xTaskResumeAll` 以关闭调度器的方式进行临界区保护。但是当调度器关闭时，任务虽然不会被切换，但是中断服务依然会响应。如果中断服务函数此时操作队列的事件列表 **xTasksWaitingToSend** 和 **xTasksWaitingToReceive**，则很有可能会与任务产生竞争冲突。因此 **FreeRTOS** 使用 `prvLockQueue` 和 `prvUnlockQueue` 对队列进行锁操作。
 
-[1]: ./images/xQueueCreate.jpg
-[2]: ./images/xQueueCreate_Structure.jpg
-[3]: ./images/xQueueGenericSend.jpg
-[4]: ./images/prvCopyDataToQueue.jpg
-[5]: ./images/xQueueGenericSendFromISR.jpg
-[6]: ./images/xQueueReceive.jpg
-[7]: ./images/xQueueReceiveFromISR.jpg
+对于队列锁的简要逻辑是：
+ - 对于ISR，如果队列未上锁，则不但操作队列数据，同时还唤醒阻塞队列（如果需要）。
+ - 对于ISR，如果队列上锁，则只操作队列数据，并通过通过锁记录数据的操作次数。
+ - 对于Task，在队列解锁时会检查锁的状态，如果有中断对队列进行了操作，则此时才唤醒阻塞队列。
+
+ [1]: ./images/xQueueCreate.jpg
+ [2]: ./images/xQueueCreate_Structure.jpg
+ [3]: ./images/xQueueGenericSend.jpg
+ [4]: ./images/prvCopyDataToQueue.jpg
+ [5]: ./images/xQueueGenericSendFromISR.jpg
+ [6]: ./images/xQueueReceive.jpg
+ [7]: ./images/xQueueReceiveFromISR.jpg
+ [8]: https://www.freertos.org/Embedded-RTOS-Queues.html
