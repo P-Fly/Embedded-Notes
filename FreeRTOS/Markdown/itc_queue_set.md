@@ -11,13 +11,16 @@
  1. 使用 `xQueueCreateSet` 显示创建队列集。
  2. 使用 `xQueueAddToSet` 将队列或信号量添加至集合中。
  3. 使用 `xQueueSelectFromSet` 或 `xQueueSelectFromSetFromISR` 监视队列集的状态改变。
- 4. 如果集合接收到队列消息，则 **步骤3** 返回准备读取的队列集成员的句柄。需通过 **xQueueReceive** 或 **xQueueSemaphoreTake** 读取具体的队列消息。
+ 4. 如果集合接收到队列消息，则 **步骤3** 返回需要读取的队列的句柄。最后通过 **xQueueReceive** 或 **xQueueSemaphoreTake** 读取具体的队列消息。
 
-详细的例子可以参见：[Queue Set Example][2]
+![QueueSet Structure][2]
+
+详细的例子可以参见：[Queue Set Example][3]
 
 ## 替代方案
 
-定义一个结构，其中包含一个成员来保存事件类型，另一个成员保存与事件相关联的数据或指针。然后使用单个队列来发送和接收定义的消息。
+可以定义一个结构体，其中包含一个成员来保存事件类型，另一个成员保存与事件相关联的数据或指针。最后使用单个队列来发送和接收定义的消息。
 
  [1]: https://www.freertos.org/Pend-on-multiple-rtos-objects.html
- [2]: https://www.freertos.org/xQueueCreateSet.html
+ [2]: ./images/QueueSet_Structure.jpg
+ [3]: https://www.freertos.org/xQueueCreateSet.html
