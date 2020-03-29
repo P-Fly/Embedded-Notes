@@ -208,4 +208,16 @@ vTaskSuspend</panel_attributes>
 vTaskSuspend</panel_attributes>
     <additional_attributes>10.0;150.0;10.0;20.0;840.0;20.0;840.0;490.0;720.0;490.0</additional_attributes>
   </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>700</x>
+      <y>490</y>
+      <w>340</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-&gt;&gt;&gt;
+taskYIELD</panel_attributes>
+    <additional_attributes>10.0;20.0;320.0;20.0</additional_attributes>
+  </element>
 </diagram>

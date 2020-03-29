@@ -49,7 +49,7 @@ QueueHandle_t xQueueGenericCreate( const UBaseType_t uxQueueLength,
 
 使用 `xQueueGenericCreate` 创建队列的数据结构如下图：
 
-![xQueueCreate Structure][2]
+![QueueCreate Structure][2]
 
 ## 入队
 
@@ -200,7 +200,7 @@ void vQueueDelete( QueueHandle_t xQueue )
  - 对于Task，在队列解锁时会检查锁的状态，如果有中断对队列进行了操作，则此时才唤醒阻塞队列。
 
  [1]: ./images/xQueueCreate.jpg
- [2]: ./images/xQueueCreate_Structure.jpg
+ [2]: ./images/QueueCreate_Structure.jpg
  [3]: ./images/xQueueGenericSend.jpg
  [4]: ./images/prvCopyDataToQueue.jpg
  [5]: ./images/xQueueGenericSendFromISR.jpg

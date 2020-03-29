@@ -138,7 +138,7 @@ FreeRTOS 的核心是任务管理，每个任务都有一些数据需要存储�
  - **pxOverflowDelayedTaskList**：溢出延时列表指针，如果唤醒时间（**xTickCount + xTicksToDelay**）溢出，就放入到该链表中。
  - **xPendingReadyList**：某些任务进入就绪态时，无法放入 **pxReadyTasksLists** 中。比如：调度器已经被挂起，此时放入该链表，等待调度器恢复。注意：放入到该链表中的是 **pxTCB->xEventListItem**，因此，我们可以认为这个链表是一个消息链表。关于链表 **xPendingReadyList** 更详细的讨论，可以参看文档：[xPendingReadyList链表][5]。
  - **xTasksWaitingTermination**：**eRunning** 状态的任务被删除时，无法释放资源，需要使用该链表进行跟踪，以便后续在 **IDLE** 任务中释放。
- - **xSuspendedTaskList**：跟踪被挂起的任务。
+ - **xSuspendedTaskList**：跟踪被挂起的任务（无限期等待的任务）。
 
 ### 全局变量
 
@@ -179,6 +179,23 @@ FreeRTOS 的核心是任务管理，每个任务都有一些数据需要存储�
 ### 状态迁移
 
 ![Task States][4]
+
+### 任务的状态和全局链表的关系
+
+需要注意 [任务的状态](./#任务的状态)  和 [全局链表](./#全局链表) 是程序的两个维度，是不能直接对应的：
+
+ - **任务的状态** 是从用户的维度来看待任务：
+    - **Blocked** 是指会在一定条件下被唤醒的任务，包括：Ticks、Event、Notify 等。
+    - **Suspended** 是指不会被唤醒的任务（只能由用户使用 `vTaskSuspend`/`vTaskResume` 手动休眠/唤醒）。
+
+ - **全局链表** 是从内核的维度来看待任务（只与等待周期相关，而与事件消息无关）：
+    - 如果任务会在一定的周期后被唤醒，就会挂载到链表 **pxDelayedTaskList** 或 **pxOverflowDelayedTaskList** 上。比如：
+        - 使用 `xQueueReceive` 等待消息接收，超时时间不为 **portMAX_DELAY**。
+        - 使用 `vTaskDelay` 等待一段时间被唤醒（该函数不支持 **portMAX_DELAY**）。
+
+    - 如果任务将无限期的等待，就会挂载到链表 **xSuspendedTaskList** 上，比如：
+        - 使用 `xQueueReceive` 等待消息接收，超时时间为 **portMAX_DELAY**。
+        - 使用 `vTaskSuspend` 挂起任务。
 
 ### 查询接口
 
