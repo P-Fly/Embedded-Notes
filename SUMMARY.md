@@ -21,7 +21,7 @@
         - [任务的挂起与恢复](FreeRTOS/Markdown/task_suspend_and_resume.md)
     - Inter-Task Communication
         - [任务间通信介绍](FreeRTOS/Markdown/itc_introduction.md)
-        - [任队列](FreeRTOS/Markdown/itc_queue.md)
+        - [队列](FreeRTOS/Markdown/itc_queue.md)
         - [队列集](FreeRTOS/Markdown/itc_queue_set.md)
     - Misc
         - [中断优先级](FreeRTOS/Markdown/misc_interrupt_priority.md)
