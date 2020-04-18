@@ -34,3 +34,4 @@
 - Keil MDK
     - [如何生成反汇编文件](Keil/Markdown/disassembly_output.md)
     - [如何配置并行编译](Keil/Markdown/parallel_build.md)
+    - [如何计算占用Flash和SRAM的大小](Keil/Markdown/calculate_flash_and_sram.md)
