@@ -20,33 +20,47 @@
 
  - [Recursive Semaphores][4]：与 **Mutexes** 相似，但是该互斥体可以被所有者反复获取。当该所有者不在使用该资源时，需要反复释放相同的次数才会将资源释放。
 
-## 创建 **Binary Semaphores**
+## **Binary Semaphores**
 
-| API | 实际调用函数 |
+| API | comments |
 | :--- | :--- |
-| xSemaphoreCreateBinary | xQueueGenericCreate |
-| xSemaphoreCreateBinaryStatic | xQueueGenericCreateStatic |
+| xSemaphoreCreateBinary | Creates a new binary semaphore with dynamic memory |
+| xSemaphoreCreateBinaryStatic | Creates a new binary semaphore with static memory |
+| xSemaphoreTake | To obtain a semaphore |
+| xSemaphoreTakeFromISR | To obtain a semaphore from ISR |
+| xSemaphoreGive | To release a semaphore |
+| xSemaphoreGiveFromISR | To release a semaphore from ISR |
 
-## 创建 **Counting Semaphores**
+## **Counting Semaphores**
 
-| API | 实际调用函数 |
+| API | comments |
 | :--- | :--- |
-| xSemaphoreCreateCounting | xQueueCreateCountingSemaphore |
-| xSemaphoreCreateCountingStatic | xSemaphoreCreateCountingStatic |
+| xSemaphoreCreateCounting | Creates a new counting semaphore with dynamic memory |
+| xSemaphoreCreateCountingStatic | Creates a new counting semaphore with static memory |
+| xSemaphoreTake | To obtain a semaphore |
+| xSemaphoreTakeFromISR | To obtain a semaphore from ISR |
+| xSemaphoreGive | To release a semaphore |
+| xSemaphoreGiveFromISR | To release a semaphore from ISR |
 
-## 创建 **Mutexes**
+## **Mutexes**
 
-| API | 实际调用函数 |
+| API | comments |
 | :--- | :--- |
-| xSemaphoreCreateMutex | xQueueCreateMutex |
-| xSemaphoreCreateMutexStatic | xQueueCreateMutexStatic |
+| xSemaphoreCreateMutex | Creates a new mutex type semaphore with dynamic memory |
+| xSemaphoreCreateMutexStatic | Creates a new mutex type semaphore with static memory |
+| xSemaphoreTake | To obtain a semaphore |
+| xSemaphoreTakeFromISR | To obtain a semaphore from ISR |
+| xSemaphoreGive | To release a semaphore |
+| xSemaphoreGiveFromISR | To release a semaphore from ISR |
 
-## 创建 **Recursive Semaphores**
+## **Recursive Semaphores**
 
-| API | 实际调用函数 |
+| API | comments |
 | :--- | :--- |
-| xSemaphoreCreateRecursiveMutex | xQueueCreateMutex |
-| xSemaphoreCreateRecursiveMutexStatic | xQueueCreateMutexStatic |
+| xSemaphoreCreateRecursiveMutex | Creates a new recursive mutex type semaphore with dynamic memory |
+| xSemaphoreCreateRecursiveMutexStatic | Creates a new recursive mutex type semaphore with static memory |
+| xSemaphoreTakeRecursive | To obtain a semaphore |
+| xSemaphoreGiveRecursive | To release a semaphore |
 
  [1]: https://www.freertos.org/Embedded-RTOS-Binary-Semaphores.html
  [2]: https://www.freertos.org/Real-time-embedded-RTOS-Counting-Semaphores.html
