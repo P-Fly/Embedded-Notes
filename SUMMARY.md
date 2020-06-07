@@ -25,6 +25,7 @@
         - [队列集](FreeRTOS/Markdown/itc_queue_set.md)
         - [信号量和互斥量](FreeRTOS/Markdown/itc_semaphore_and_mutex.md)
         - [任务通知](FreeRTOS/Markdown/itc_task_notifications.md)
+        - [流缓冲和消息缓冲](FreeRTOS/Markdown/itc_stream_buffer.md)
     - Memory Management
         - [内存管理](FreeRTOS/Markdown/mem_management.md)
     - Misc
