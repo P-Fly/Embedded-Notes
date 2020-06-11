@@ -19,6 +19,7 @@
         - [任务的调度](FreeRTOS/Markdown/task_yield.md)
         - [系统时钟与任务延时](FreeRTOS/Markdown/task_systick_and_delay.md)
         - [任务的挂起与恢复](FreeRTOS/Markdown/task_suspend_and_resume.md)
+        - [空闲任务](FreeRTOS/Markdown/task_idle_task.md)
     - Inter-Task Communication
         - [任务间通信介绍](FreeRTOS/Markdown/itc_introduction.md)
         - [队列](FreeRTOS/Markdown/itc_queue.md)
